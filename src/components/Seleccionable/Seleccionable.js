@@ -11,7 +11,7 @@ const Seleccionable = ({opciones,texto,seleccion}) => {
     <div className={"form-group row "+styles.Seleccionable} data-testid="Seleccionable">
             <label htmlFor="selectEvi" className="col-sm-2 col-form-label">{texto} </label>
             <div className="col-sm-10">
-              <select id="selectEvi" className="form-control form-control-lg" value={audio} onChange={e=>setAudio(e.target.value)}>
+              <select id="selectEvi" className="form-control" value={audio} onChange={e=>setAudio(e.target.value)}>
                 {
                   opciones.map((item,index)=><option key={item.value}>{item.label}</option>)
                 }

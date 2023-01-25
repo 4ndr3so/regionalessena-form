@@ -1,6 +1,11 @@
 # RegionalesSENA-Form
 
+## Para tomar items de sharepoint
 
+Se debe crear la lista de sharepoint con todos los campos necesarios, o las listas y enlazarlas
+Se debe tomar el nombre del campo y probar crear un nuevo elemento, ya sea con jquery o ajax, etc
+Se puede usar el archivo uploadfile donde están ya definidos los metodos para  la creación de un nuevo item en la lista
+En el mensaje de error de exito comprobar el funcionamiento de los repetidos e indexados
 
 ## Getting started
 

@@ -33,7 +33,8 @@ let dataSelec = [
   {  value:"fotogaleroa", label:"Fotogalería"},
   {  value:"notiSENA", label:"NotiSENA"},
   {  value:"correoMasivo", label:"Correo Masivo"},
-  {  value:"video", label:"Video"}
+  {  value:"video", label:"Video"},
+  {  value:"Banners", label:"Banners"},
 ]
 let tipoAudiovisual=[
   {  value:"senaMinuto", label:"SENA en un minuto"},
@@ -90,11 +91,13 @@ const [selecDife,setSelecDife]= useState("");
 
    return(
   <div className={styles.FormPrinci} data-testid="FormPrinci">
-    <form>
-      <div className="form-group row">
+    <h2>Formulario agregar evidencia</h2>
+    <p>Descripción ...</p>
+    <form  className="needs-validation">
+      <div className="form-group mb-4  row">
         <label htmlFor="selectEvi" className="col-sm-2 col-form-label">Tipo evidencia </label>
         <div className="col-sm-10">
-          <select id="selectEvi" className="form-control form-control-lg" value={eviden} onChange={e=>setEvidencia(e.target.value)}>
+          <select id="selectEvi" className="form-select" value={eviden} onChange={e=>setEvidencia(e.target.value)}>
             {
               dataSelec.map((item,index)=><option key={item.value} value={item.value}>{item.label}</option>)
             }
@@ -105,7 +108,7 @@ const [selecDife,setSelecDife]= useState("");
         </div>
       </div>
       { eviden && retornaNuevoCon(eviden,checkdiferen,handleChekRedes) }
-      <div className="form-group row">
+      <div className="form-group mb-4  row">
         <label htmlFor="nombreActi" className="col-sm-2 col-form-label">Nombre actividad</label>
           <div className="col-sm-10">
             <input
@@ -119,10 +122,10 @@ const [selecDife,setSelecDife]= useState("");
           </small>
           </div>
       </div>
-      <div className="form-group row">
+      <div className="form-group mb-4 row">
         <label htmlFor="selectAlcance" className="col-sm-2 col-form-label">Alcance </label>
           <div className="col-sm-10">
-            <select id="selectAlcance" className="form-control form-control-lg">
+            <select id="selectAlcance" className="form-select">
               {
                 alcance.map((item,index)=><option key={item.value} >{item.label}</option>)
               }
@@ -133,14 +136,14 @@ const [selecDife,setSelecDife]= useState("");
           </div>
       </div>
 
-      <div className="form-group row">
+      <div className="form-group mb-4 row">
         <label htmlFor="nombreActi" className="col-sm-2 col-form-label">Descripción</label>
         <div className="col-sm-10">
-          <input
+          <textarea rows="3"
             type="text"
             className="form-control"
             id="nombreActi"
-            placeholder="Nombre de la actividad"
+            placeholder="Descripción de la evidencia"
           />
           <small id="emailHelp" className="form-text text-muted">
               Descripción
@@ -148,33 +151,34 @@ const [selecDife,setSelecDife]= useState("");
         </div>
       </div>
 
-      <div className="form-group row">
+      <div className="form-group mb-4 row">
         <label htmlFor="nombreActi" className="col-sm-2 col-form-label">Link</label>
         <div className="col-sm-10">
           <input
             type="text"
             className="form-control"
             id="nombreActi"
-            placeholder="Nombre de la actividad"
+            placeholder="Link de la evidencia"
           />
           <small id="emailHelp" className="form-text text-muted">
               Link de la evidencia, un link por evidencia
             </small>
         </div>
       </div>
-      <div className="form-group row">
+    {/*<div className="form-group mb-4 row">
         <label htmlFor="imagenUpload" className="col-sm-2 col-form-label">Imagen de la evidencia</label>
         <div className="col-sm-10">
-          <input type="file" className="form-control-file" id="imagenUpload"/>
-        </div>
-    </div>
-    <div className="form-group row">
+          <label htmlFor="imagenUpload" class="btn btn-primary">Subir imagen</label>
+          <input type="file" style={{visibility:"hidden"}} id="imagenUpload" />
+            </div>
+            </div>*/}
+    <div className="form-group mb-4 row">
         <label htmlFor="fechaEvi" className="col-sm-2 col-form-label">Fecha de la evidencia</label>
         <div className="col-sm-10">
           <input type="date" className="form-control-file" id="fechaEvi"/>
         </div>
     </div>
-    <div className="form-group row">
+    <div className="form-group mb-4 row">
       <label className="col-sm-2 col-form-label" htmlFor="check1">
             Enfoque Diferencial
           </label>
@@ -193,7 +197,7 @@ const [selecDife,setSelecDife]= useState("");
          checkdiferen?<Seleccionable opciones={enfoqueDife} seleccion={selecDife} texto={"Enfoque diferencial"}></Seleccionable>:""
       }
       <button type="submit" className="btn btn-primary">
-        Submit
+        Guardar evidencia
       </button>
     </form>
   </div>

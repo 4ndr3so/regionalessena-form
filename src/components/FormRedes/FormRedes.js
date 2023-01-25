@@ -15,37 +15,37 @@ const FormRedes = ({enfoque,handleChekRedes}) => {
     Stream live/Facebook/Twitter
 
       
-      <div className="form-group row">
+      <div className="form-group mb-2 row">
         <label htmlFor="inputAlcance" className="col-sm-2 col-form-label">Alcance</label>
         <div className="col-sm-10">
           <input type="number" className="form-control" id="inputAlcance" placeholder="Alcance"/>
         </div>
       </div>
-      <div className="form-group row">
+      <div className="form-group mb-2 row">
         <label htmlFor="inputInter" className="col-sm-2 col-form-label">Interacciones</label>
         <div className="col-sm-10">
           <input type="number" className="form-control" id="inputInter" placeholder="Interacciones"/>
         </div>
       </div>
-      <div className="form-group row">
+      <div className="form-group mb-2 row">
         <label htmlFor="inputCompa" className="col-sm-2 col-form-label">Compartidas</label>
         <div className="col-sm-10">
           <input type="number" className="form-control" id="inputCompa" placeholder="Compartidas"/>
         </div>
       </div>
-      <div className="form-group row">
+      <div className="form-group mb-2 row">
         <label htmlFor="inputComentarios" className="col-sm-2 col-form-label">Comentarios</label>
         <div className="col-sm-10">
           <input type="number" className="form-control" id="inputComentarios" placeholder="Comentarios"/>
         </div>
       </div>
-      <div className="form-group row">
+      <div className="form-group mb-2 row">
         <label htmlFor="inputConecta" className="col-sm-2 col-form-label">Conectados</label>
         <div className="col-sm-10">
           <input type="number" className="form-control" id="inputConecta" placeholder="Conectados"/>
         </div>
       </div>
-      <div className="form-group row">
+      <div className="form-group mb-2 row">
       <label className="col-sm-2 col-form-label" htmlFor="check1">
             Lenguaje de señas
           </label>
