@@ -1,27 +1,26 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Seleccionable.module.scss';
+import ContLabel from '../FormPrinci/ContLabel';
 
-const Seleccionable = ({opciones,texto,seleccion}) => {
+const Seleccionable = ({opciones,texto,hanldleOnchange,iden}) => {
 
   const [audio,setAudio]=useState(opciones[0].value)
-
+  const changeVar=(e)=>{
+    setAudio(e.target.value)
+    hanldleOnchange(e,e.target.value)
+  }
   return (
-  
-    <div className={"form-group row "+styles.Seleccionable} data-testid="Seleccionable">
-            <label htmlFor="selectEvi" className="col-sm-2 col-form-label">{texto} </label>
-            <div className="col-sm-10">
-              <select id="selectEvi" className="form-control" value={audio} onChange={e=>setAudio(e.target.value)}>
-                {
-                  opciones.map((item,index)=><option key={item.value}>{item.label}</option>)
-                }
-              </select>
-              <small id="emailHelp" className="form-text text-muted">
-                Seleccione el {texto}
-              </small>
-            </div>
-      </div>
-
+    <ContLabel nombre={texto} nombrefor="selec" margin={2} className={styles.Seleccionable} iden={iden}>
+                <select id={`select${iden}`} className="form-control" value={audio} name={audio} onChange={e=>changeVar(e)} required>
+                  {
+                    opciones.map((item,index)=><option key={item.value}>{item.value}</option>)
+                  }
+                </select>
+                <small id="emailHelp" className="form-text text-muted">
+                  Seleccione el {texto}
+                </small>
+      </ContLabel>           
 )};
 
 Seleccionable.propTypes = {};

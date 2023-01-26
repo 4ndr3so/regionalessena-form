@@ -1,207 +1,225 @@
-import React, { useState } from "react";
+import React, { useCallback, useContext, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./FormPrinci.module.scss";
-import FormRedes from "../FormRedes/FormRedes";
-import Pqrs from "../Pqrs/Pqrs";
-import CierreRedes from "../CierreRedes/CierreRedes";
 import Seleccionable from "../Seleccionable/Seleccionable";
-import CampoTexto from "../CampoTexto/CampoTexto";
-import ContNuevo from "../ContNuevo/ContNuevo";
-let alcance=[
-  {  value:"", label:""},
-  {  value:"comExterna", label:"comunicación Externa"},
-  {  value:"comInterna", label:"comunicación Interna"},
-]
-let dataSelec = [
-  {  value:"", label:""},
-  {  value:"audiovisuales", label:"Producto audiovisual"},
-  {  value:"boletines", label:"Boletin"},
-  {  value:"redesSociales", label:"Red social"},
-  {  value:"SENAtv", label:"SENA al aire TV"},
-  {  value:"Podcast", label:"Podcast"},
-  {  value:"SENAradio", label:"SENA al aire Radio"},
-  {  value:"Eventos", label:"Evento"},
-  {  value:"SENAapp", label:"Publicación SENA app"},
-  {  value:"streaming", label:"Streaming live"},
-  {  value:"facebook", label:"Facebook"},
-  {  value:"twiter", label:"Twitter"},
-  {  value:"impacto", label:"Impacto en medios de comunicacion regionales (Medios tradicionales, digitales y redes)"},
-  {  value:"redesImpacto", label:"Cierre mensual de redes"},
-  {  value:"pqrs", label:"PQRS"},
-  {  value:"newsletter", label:"Newsletter"},
-  {  value:"notas", label:"Nota nube"},
-  {  value:"fotogaleroa", label:"Fotogalería"},
-  {  value:"notiSENA", label:"NotiSENA"},
-  {  value:"correoMasivo", label:"Correo Masivo"},
-  {  value:"video", label:"Video"},
-  {  value:"Banners", label:"Banners"},
-]
-let tipoAudiovisual=[
-  {  value:"senaMinuto", label:"SENA en un minuto"},
-  {  value:"senaTrans", label:"SENA transforma"},
-  {  value:"senaVitrinas", label:"Vitrinas"},
-]
-let enfoqueDife=[
-  {  value:"p1", label:"Productos audiovisuales con LS o subtitulos"},
-  {  value:"p2", label:"Notas internas, boletines de prensa, enfoque diferenciañ, política de discapacidad"},
-  {  value:"p3", label:"Publicaciones SENA incluyente en redes sociales nacionales y regionales"},
-  {  value:"p4", label:"Productos SENa al aire"},
-  {  value:"p5", label:"Eventos virtuales presenciales- leguas de señas y/o tácticas en vivo"},
-]
-let cierreMensual=0;
-let numeroImpactos=0;
+import propForms from "./propiedadesForm";
+import retornaNuevoCon from "./retornaNuevoCon";
+import ContLabel from "./ContLabel";
+import { StoreContext } from "../../store/StoreProvider";
+import { types } from "../../store/StoreReducer";
+let cierreMensual = 0;
+let numeroImpactos = 0;
 
-const retornaNuevoCon=(valor,checkdiferen,handleChekRedes)=>{
 
-  console.log(valor)
-  let retorNo="";
-  switch (valor) {
-    case "audiovisuales":
-        retorNo=<Seleccionable opciones={tipoAudiovisual} texto={dataSelec[1].label}></Seleccionable>;
-      break;
-    case "streaming": case "facebook": case "twiter":
-      retorNo=<FormRedes enfoque={checkdiferen} handleChekRedes={handleChekRedes}></FormRedes>
-      break;
-    case "pqrs":
-      retorNo=<Pqrs></Pqrs>
-      break;
-    case "redesImpacto":
-      retorNo= <CierreRedes></CierreRedes>
-      break;
-    case "impacto":
-      retorNo= <CampoTexto text={"Numero de impactos"}></CampoTexto>
-      break;
-    default:
-      break;
-  }
-  return(retorNo!=="" ?<ContNuevo>
-      {retorNo}
-  </ContNuevo>:"")
-}
+
 const FormPrinci = ({ regional }) => {
- const [eviden,setEvidencia] =useState(dataSelec[0].value)
- const [checkdiferen,setCheckdiferen] =useState(false);
-const [selecDife,setSelecDife]= useState("");
- const handleChekRedes=(v1,v2)=>{
-    if(v2==="p1"){
-      
+  const refTextArea= useRef();
+  const [store, dispatch] = useContext(StoreContext);
+  const { Title, Alcance, Cierre_x0020_mensual_x0020_redes, CierreMesualRedes_nuevos_seguido, CierreMesualRedes_Red_social,
+    Descripci_x00f3_n, Enfoque_x0020_diferencial, hash_link, PublishingPageImage, link_evidencia, numero_x0020_Impactos,
+    PQRS_contestadas, PQRS_contestados_bandejaEntrada, PQRS_pregunta, PQRS_preguntas_bandeja_entrada, PQRS_Sin_contestar_bandeja_entra,
+    PQRS_sin_contestar, PQRS_temas, Producto_audiovisual_PA, S_F_T_alcance, S_F_T_comentarios, S_F_T_compartidas,
+    S_F_T_conectados, S_F_T_interacciones, S_F_T_Lenguaje_sennas, Tipo_x0020_Evidencia, Regional,
+    Fecha_x0020_de_x0020_la_x0020_ev
+  } = store;
+
+  //console.log(store.state)
+  const { alcanceComu, dataSelec, enfoqueDife } = propForms;
+  const [eviden, setEvidencia] = useState(dataSelec[0].value)
+  const [validaText, setValidaText] = useState(true)
+  const [checkdiferen, setCheckdiferen] = useState(false);
+ 
+ 
+
+  const handleChekRedes = (e, v2) => {
+   /* dispatch({
+      type:types.change_data,
+      payload:{name:e.target.name,value:e.target.checked}
+      })*/
+    setCheckdiferen(!checkdiferen)
+  }
+
+  const handleChange = useCallback (e => {
+      console.log(e.target.value)
+     /* dispatch({
+        type:types.change_data,
+        payload:{name:e.target.name,value:e.target.value}
+        })*/
+        switch (e.target.name) {
+          case "Tipo_x0020_Evidencia":
+            setEvidencia(e.target.value)
+            break;
+        case "Alcance":
+           // setAlcanceSelec(e.target.value)
+              break;
+          default:
+            break;
+          }
+      },[dispatch])
+     
+  const hanldleOnchange=(e,audio)=>{
+    switch (e.target.name) {
+      case "a":
+        
+        break;
+    
+      default:
+        break;
     }
-  setCheckdiferen(!checkdiferen)
-}
+      console.debug(e.target.value)
+  }    
+  const handleSubmit=(evt)=>{
+    console.debug("inicia submit")
+    evt.preventDefault();
+    let validate=comprobarlink(refTextArea.current.value);
+    setValidaText(()=>validate)
+    if(validate){
+      
+      
+      for(let i=0;i<evt.target.length;i++){
+        console.debug(evt.target[i].name,evt.target[i].value)
+        if(evt.target[i].name==="Enfoque_x0020_diferencial"){
+          dispatch({
+            type:types.change_data,
+            payload:{name:evt.target[i].name,value:checkdiferen}
+            })
+        }else{
+          dispatch({
+            type:types.change_data,
+            payload:{name:evt.target[i].name,value:evt.target[i].value}
+            })
+        }
+        
+      }
+      
+      
+    }else{
 
-   return(
-  <div className={styles.FormPrinci} data-testid="FormPrinci">
-    <h2>Formulario agregar evidencia</h2>
-    <p>Descripción ...</p>
-    <form  className="needs-validation">
-      <div className="form-group mb-4  row">
-        <label htmlFor="selectEvi" className="col-sm-2 col-form-label">Tipo evidencia </label>
-        <div className="col-sm-10">
-          <select id="selectEvi" className="form-select" value={eviden} onChange={e=>setEvidencia(e.target.value)}>
-            {
-              dataSelec.map((item,index)=><option key={item.value} value={item.value}>{item.label}</option>)
-            }
-          </select>
-          <small id="emailHelp" className="form-text text-muted">
-           Selecione el tipo de evidencia
-          </small>
-        </div>
-      </div>
-      { eviden && retornaNuevoCon(eviden,checkdiferen,handleChekRedes) }
-      <div className="form-group mb-4  row">
-        <label htmlFor="nombreActi" className="col-sm-2 col-form-label">Nombre actividad</label>
-          <div className="col-sm-10">
-            <input
-              type="text"
-              className="form-control"
-              id="nombreActi"
-              placeholder="Nombre de la actividad"
-            />
-            <small id="emailHelp" className="form-text text-muted">
-            Escriba el tipo de actividad
-          </small>
-          </div>
-      </div>
-      <div className="form-group mb-4 row">
-        <label htmlFor="selectAlcance" className="col-sm-2 col-form-label">Alcance </label>
-          <div className="col-sm-10">
-            <select id="selectAlcance" className="form-select">
-              {
-                alcance.map((item,index)=><option key={item.value} >{item.label}</option>)
-              }
-            </select>
-            <small id="emailHelp" className="form-text text-muted">
-              Seleccione el alcance
-            </small>
-          </div>
-      </div>
-
-      <div className="form-group mb-4 row">
-        <label htmlFor="nombreActi" className="col-sm-2 col-form-label">Descripción</label>
-        <div className="col-sm-10">
-          <textarea rows="3"
-            type="text"
-            className="form-control"
-            id="nombreActi"
-            placeholder="Descripción de la evidencia"
-          />
-          <small id="emailHelp" className="form-text text-muted">
-              Descripción
-            </small>
-        </div>
-      </div>
-
-      <div className="form-group mb-4 row">
-        <label htmlFor="nombreActi" className="col-sm-2 col-form-label">Link</label>
-        <div className="col-sm-10">
+    }
+    
+  }
+  const comprobarlink=(link)=>{
+    const regExp1=/^https?\:\/\/*[^\s]+$/
+    let valida=regExp1.test(link);
+    if(!valida){
+      refTextArea.current.focus()
+    }
+    
+    return valida
+  }
+  return (
+    <div className={styles.FormPrinci} data-testid="FormPrinci">
+      <h2>Formulario agregar evidencia</h2>
+      <p>Descripción ...</p>
+      <form className="needs-validation was-validated bordeFor animate__animated animate__fadeIn"
+      onSubmit={handleSubmit}>
+        <ContLabel nombre={"Nombre actividad"} nombrefor="nombreActi" margin={4} obligatorio={true}>
           <input
             type="text"
             className="form-control"
             id="nombreActi"
-            placeholder="Link de la evidencia"
+            placeholder="nombre de la actividad"
+            onChange={(e) => handleChange(e)}
+            name="Title"
+            minLength="4"
+            maxLength="50"
+            required
           />
           <small id="emailHelp" className="form-text text-muted">
-              Link de la evidencia, un link por evidencia
-            </small>
-        </div>
-      </div>
-    {/*<div className="form-group mb-4 row">
+            Nombre de la actividad es obligatoio
+          </small>
+        </ContLabel>
+        <ContLabel nombre={"Tipo evidencia"} nombrefor="selectEvi" margin={4} obligatorio={true}>
+          <select id="selectEvi" className="form-select"  name="Tipo_x0020_Evidencia"  onChange={e => handleChange(e)} required>
+            {
+              dataSelec.map((item, index) => <option key={item.value} value={item.value}>{item.label}</option>)
+            }
+          </select>
+          <small id="emailHelp" className="form-text text-muted">
+            Tipo de evidencia es obligatorio, seleccionelo de la lista
+          </small>
+        </ContLabel>
+        {eviden && retornaNuevoCon(eviden, checkdiferen, handleChekRedes,hanldleOnchange)}
+        <ContLabel nombre={"Alcance"} nombrefor="selectAlcance" margin={4} obligatorio={true}>
+          <select id="selectAlcance" className="form-select" name="Alcance" onChange={e => handleChange(e)} required>
+            {
+              alcanceComu.map((item, index) => <option key={item.value} >{item.label}</option>)
+            }
+          </select>
+          <small id="emailHelp" className="form-text text-muted">
+           Alcance es obligatorio, seleccionelo de la lista
+          </small>
+        </ContLabel>
+        <ContLabel nombre={"Descripción u observación"} nombrefor="decrip" margin={4}>
+          <textarea rows="3"
+            type="text"
+            className="form-control"
+            id="decrip"
+            placeholder="Descripción de la evidencia"
+            name="Descripci_x00f3_n"
+            onChange={e => handleChange(e)}
+          />
+          <small id="emailHelp" className="form-text text-muted">
+            Agregue una descipción u observaciones si lo considera necesario
+          </small>
+        </ContLabel>
+        <ContLabel nombre={"Link"} nombrefor="linkacti" margin={4} obligatorio={true}>
+          <textarea
+            type="text"
+            className="form-control"
+            id="linkacti"
+            placeholder="https://..."
+            name="link_evidencia"
+            onChange={e => handleChange(e)}
+            ref={refTextArea}
+            required
+          />
+          { validaText ? "":<div className="text-danger">Debe ser un link valido, empezar por http o https, no tener espacios</div>}
+          <small id="emailHelp" className="form-text text-muted" >
+            EL enlace de la evidencia es obligatorio, debe ser un enlace valido 
+          </small>
+        </ContLabel>
+        {/*<div className="form-group mb-4 row">
         <label htmlFor="imagenUpload" className="col-sm-2 col-form-label">Imagen de la evidencia</label>
         <div className="col-sm-10">
           <label htmlFor="imagenUpload" class="btn btn-primary">Subir imagen</label>
           <input type="file" style={{visibility:"hidden"}} id="imagenUpload" />
             </div>
-            </div>*/}
-    <div className="form-group mb-4 row">
-        <label htmlFor="fechaEvi" className="col-sm-2 col-form-label">Fecha de la evidencia</label>
-        <div className="col-sm-10">
-          <input type="date" className="form-control-file" id="fechaEvi"/>
-        </div>
+            </div>*/
+        }
+        <ContLabel nombre={"Fecha de la evidencia"} nombrefor="fechaEvi" margin={4} obligatorio={true}>
+          <input type="date" className="form-control-file" id="fechaEvi" 
+            name="Fecha_x0020_de_x0020_la_x0020_ev"
+            onChange={e => handleChange(e)} required/>
+            <small id="emailHelp" className="form-text text-muted" >
+            La fecha es obligatoria, escriba la fecha de la actividad. La fecha del dia que subio la evidencia el sistema la toma
+          </small>
+        </ContLabel>
+        <ContLabel nombre={"Enfoque Diferencial"} nombrefor="check1" margin={4}>
+          <div className="form-check">
+            <input
+              type="checkbox"
+              className="form-check-input"
+              id="check1"
+              defaultChecked={checkdiferen}
+              name="Enfoque_x0020_diferencial"
+              onChange={(e) => handleChekRedes(e)}
+            />
+            <small id="emailHelp" className="form-text text-muted" >
+            Seleccione si la actividad tubo enfoque diferencial
+          </small>
+          </div>
+        </ContLabel>
+        {
+          checkdiferen ? <Seleccionable opciones={enfoqueDife}  texto={"Enfoque diferencial"} hanldleOnchange={hanldleOnchange} iden={2}></Seleccionable> : ""
+        }
+        <button type="submit" className="btn btn-primary">
+          Guardar evidencia
+        </button>
+      </form>
     </div>
-    <div className="form-group mb-4 row">
-      <label className="col-sm-2 col-form-label" htmlFor="check1">
-            Enfoque Diferencial
-          </label>
-        <div className="form-check col-sm-10">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="check1"
-            checked={checkdiferen}
-            onChange={(e)=> handleChekRedes()}
-          />
-          
-        </div>
-      </div>
-      {
-         checkdiferen?<Seleccionable opciones={enfoqueDife} seleccion={selecDife} texto={"Enfoque diferencial"}></Seleccionable>:""
-      }
-      <button type="submit" className="btn btn-primary">
-        Guardar evidencia
-      </button>
-    </form>
-  </div>
-)};
+  )
+};
 
 FormPrinci.propTypes = {};
 

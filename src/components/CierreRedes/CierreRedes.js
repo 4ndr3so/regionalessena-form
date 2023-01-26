@@ -1,39 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './CierreRedes.module.scss';
+import ContLabel from '../FormPrinci/ContLabel';
 let redesSoci=[
-  {  value:"facebook", label:"Facebook"},
-  {  value:"twitter", label:"Twitter"},
-  {  value:"senaapp", label:"SENA App"},
-  {  value:"youtube", label:"Youtube"},
-  {  value:"instagram", label:"Instagram"},
+  {  value:"", label:""},
+  {  value:"Facebook", label:"Facebook"},
+  {  value:"Twitter", label:"Twitter"},
+  {  value:"Youtube", label:"Youtube"},
+  {  value:"Instagram", label:"Instagram"},
 ]
-
-const CierreRedes = () => (
+//se puede optimizar utilizando componen Contlabel
+const CierreRedes = ({hanldleOnchange}) => (
   <div className={styles.CierreRedes} data-testid="CierreRedes">
     Cierre mensual de redes Sociales
-    <form>
-    <div className="form-group mb-2 row">
-        <label htmlFor="selectEvi" className="col-sm-2 col-form-label">Selecione la red social</label>
-        <div className="col-sm-10">
-          <select id="selectEvi" className="form-control">
-            {
-              redesSoci.map((item,index)=><option>{item.label}</option>)
-            }
-          </select>
-          <small id="emailHelp" className="form-text text-muted">
-            Agregue la información según la red social seleccionada
-          </small>
-        </div>
-      </div>
-      <div className="form-group mb-2 row">
-        <label htmlFor="inputInter" className="col-sm-2 col-form-label">Nuevos seguidores</label>
-        <div className="col-sm-10">
-          <input type="number" className="form-control" id="inputInter" placeholder="Interacciones"/>
-        </div>
-      </div>
-      
-    </form>
+    <ContLabel nombre={"Selecione la red social"} nombrefor="selectEviRedes" margin={2} >
+      <select id="selectEviRedes" className="form-control" name={"selecRedSocial"} onChange={(e)=>hanldleOnchange(e)} required>
+              {
+                redesSoci.map((item,index)=><option>{item.label}</option>)
+              }
+            </select>
+            
+      </ContLabel>
+      <ContLabel nombre={"Nuevos seguidores"} nombrefor="inputInter" margin={2} >   
+        <input type="number" className="form-control" id="inputInter" placeholder="0" name={"interacciones"} onChange={(e)=>hanldleOnchange(e)} required/>
+       </ContLabel>  
+       <small id="emailHelp" className="form-text text-muted">
+              Los campos son obligatorios, el campo Seguidores solo acepta numeros
+            </small>     
   </div>
 );
 

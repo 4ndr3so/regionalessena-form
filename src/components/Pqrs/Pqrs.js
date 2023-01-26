@@ -1,48 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Pqrs.module.scss';
-
-const Pqrs = () => (
+import ContLabel from '../FormPrinci/ContLabel';
+//se puede optimizar utilizando componen Contlabel
+const Pqrs = ({hanldleOnchange}) => (
   <div className={styles.Pqrs} data-testid="Pqrs">
     Caja de comentarios
+    <ContLabel nombre={"Preguntas"} nombrefor="inputPre" margin={2} >
+      <input type="number" className="form-control" id="inputPre" placeholder="0" name={"CajaPregun"} onChange={(e)=>hanldleOnchange(e)} required/>
+    </ContLabel>
 
-      <div className="form-group mb-2 row">
-        <label for="inputPre" className="col-sm-2 col-form-label">Preguntas</label>
-        <div className="col-sm-10">
-          <input type="number" className="form-control" id="inputPre" placeholder="Preguntas"/>
-        </div>
-      </div>
-      <div className="form-group mb-2 row">
-        <label for="inputContes" className="col-sm-2 col-form-label">Contestados</label>
-        <div className="col-sm-10">
-          <input type="number" className="form-control" id="inputContes" placeholder="Contestados"/>
-        </div>
-      </div>
-      <div className="form-group mb-2 row">
-        <label for="inputSinCon" className="col-sm-2 col-form-label">Sin contestar</label>
-        <div className="col-sm-10">
-          <input type="number" className="form-control" id="inputSinCon" placeholder="Sin contestados"/>
-        </div>
-      </div>
+    <ContLabel nombre={"Contestados"} nombrefor="inputContes" margin={2} >
+      <input type="number" className="form-control" id="inputContes" placeholder="0" name={"CajaContestados"} onChange={(e)=>hanldleOnchange(e)} required/>
+    </ContLabel>
+
+    <ContLabel nombre={"Sin contestar"} nombrefor="inputSinCon" margin={2} >
+      <input type="number" className="form-control" id="inputSinCon" placeholder="0" name={"CajaSinContes"} onChange={(e)=>hanldleOnchange(e)} required/>
+    </ContLabel>
       Bandeja de entrada
-      <div className="form-group mb-2 row">
-        <label htmlFor="inputPreguntas" className="col-sm-2 col-form-label">Preguntas</label>
-        <div className="col-sm-10">
-          <input type="number" className="form-control" id="inputPreguntas" placeholder="Preguntas"/>
-        </div>
-      </div>
-      <div className="form-group mb-2 row">
-        <label htmlFor="inputContesB" className="col-sm-2 col-form-label">Contestados</label>
-        <div className="col-sm-10">
-          <input type="number" className="form-control" id="inputContesB" placeholder="Contestados"/>
-        </div>
-      </div>
-      <div className="form-group mb-2 row">
-        <label htmlFor="inputsinContesB" className="col-sm-2 col-form-label">Sin contestar</label>
-        <div className="col-sm-10">
-          <input type="number" className="form-control" id="inputsinContesB" placeholder="Sin contestar"/>
-        </div>
-      </div>
+    <ContLabel nombre={"Preguntas"} nombrefor="inputPreguntas" margin={2} >
+      <input type="number" className="form-control" id="inputPreguntas" placeholder="0" name={"BandejaPregun"}  onChange={(e)=>hanldleOnchange(e)} required/>
+    </ContLabel>
+
+    <ContLabel nombre={"Contestados"} nombrefor="inputContesB" margin={2} >
+      <input type="number" className="form-control" id="inputContesB" placeholder="0" name={"BandejaContes"}  onChange={(e)=>hanldleOnchange(e)} required/>
+    </ContLabel>
+
+    <ContLabel nombre={"Sin contestar"} nombrefor="inputsinContesB" margin={2} >
+      <input type="number" className="form-control" id="inputsinContesB" placeholder="0" name={"BandejaSinContest"}  onChange={(e)=>hanldleOnchange(e)} required/>
+    </ContLabel>
+    <small id="emailHelp" className="form-text text-muted">
+            Todos los campos son obligatorios, solo acepta numeros
+          </small>
    </div>
 );
 

@@ -1,23 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './CampoTexto.module.scss';
+import ContLabel from '../FormPrinci/ContLabel';
 
-const CampoTexto = ({text}) => (
+const CampoTexto = ({text, hanldleOnchange,iden, nombreCampo}) => (
   <div className={styles.CampoTexto} data-testid="CampoTexto">
-    <div className="form-group row">
-        <label htmlFor="nombreActi" className="col-sm-2 col-form-label">{text}</label>
-          <div className="col-sm-10">
-            <input
-              type="text"
+    <ContLabel nombre={text} nombrefor="nombreActi" margin={2}>
+    <input
+              type="number"
               className="form-control"
-              id="nombreActi"
-              placeholder="Nombre de la actividad"
+              id={`inpt${iden}`}
+              placeholder="0"
+              name={nombreCampo}
+              onChange={(e)=>hanldleOnchange(e)}
+              required
             />
             <small id="emailHelp" className="form-text text-muted">
-            Escriba el {text}
+            {text} es obligatorio
           </small>
-          </div>
-      </div>
+    </ContLabel>
   </div>
 );
 
