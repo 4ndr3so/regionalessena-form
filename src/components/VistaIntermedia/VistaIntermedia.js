@@ -16,6 +16,8 @@ const VistaIntermedia = () =>{
     </h5>
     <div>
       <p>Descripción del tema de tema...</p>
+
+      
     </div>
   </div>
 )};
