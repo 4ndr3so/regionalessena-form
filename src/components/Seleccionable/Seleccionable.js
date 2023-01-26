@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Seleccionable.module.scss';
 import ContLabel from '../FormPrinci/ContLabel';
 
-const Seleccionable = ({opciones,texto,hanldleOnchange,iden}) => {
+const Seleccionable = ({opciones,texto,hanldleOnchange,iden,namePa}) => {
 
   const [audio,setAudio]=useState(opciones[0].value)
   const changeVar=(e)=>{
@@ -12,7 +12,7 @@ const Seleccionable = ({opciones,texto,hanldleOnchange,iden}) => {
   }
   return (
     <ContLabel nombre={texto} nombrefor="selec" margin={2} className={styles.Seleccionable} iden={iden}>
-                <select id={`select${iden}`} className="form-control" value={audio} name={audio} onChange={e=>changeVar(e)} required>
+                <select id={`select${iden}`} className="form-control" value={audio} name={namePa} onChange={e=>changeVar(e)} required>
                   {
                     opciones.map((item,index)=><option key={item.value}>{item.value}</option>)
                   }

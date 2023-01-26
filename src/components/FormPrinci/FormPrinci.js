@@ -211,7 +211,7 @@ const FormPrinci = ({ regional }) => {
           </div>
         </ContLabel>
         {
-          checkdiferen ? <Seleccionable opciones={enfoqueDife}  texto={"Enfoque diferencial"} hanldleOnchange={hanldleOnchange} iden={2}></Seleccionable> : ""
+          checkdiferen ? <Seleccionable opciones={enfoqueDife}  texto={"Enfoque diferencial"} hanldleOnchange={hanldleOnchange} iden={2} namePa={"tipo_enfoqueDi"}></Seleccionable> : ""
         }
         <button type="submit" className="btn btn-primary">
           Guardar evidencia

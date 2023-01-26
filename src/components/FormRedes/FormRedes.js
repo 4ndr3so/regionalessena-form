@@ -16,19 +16,19 @@ const FormRedes = ({enfoque,handleChekRedes,hanldleOnchange}) => {
     Stream live/Facebook/Twitter
 
     <ContLabel nombre={"Alcance"} nombrefor="inputAlcance" margin={2}>
-      <input type="number" className="form-control" id="inputAlcance" placeholder="0" name={"Alcance"} onChange={e=>hanldleOnchange(e)} required/>
+      <input type="number" className="form-control" id="inputAlcance" placeholder="0" name={"S_F_T_alcance"} onChange={e=>hanldleOnchange(e)} required/>
     </ContLabel>
     <ContLabel nombre={"Interacciones"} nombrefor="inputInter" margin={2}>
-    <input type="number" className="form-control" id="inputInter" placeholder="0"  name={"Interacciones"} onChange={e=>hanldleOnchange(e)} required/>
+    <input type="number" className="form-control" id="inputInter" placeholder="0"  name={"S_F_T_interacciones"} onChange={e=>hanldleOnchange(e)} required/>
     </ContLabel>
     <ContLabel nombre={"Compartidas"} nombrefor="inputCompa" margin={2}>
-    <input type="number" className="form-control" id="inputCompa" placeholder="0"  name={"Compartidas"}  onChange={e=>hanldleOnchange(e)} required/>
+    <input type="number" className="form-control" id="inputCompa" placeholder="0"  name={"S_F_T_compartidas"}  onChange={e=>hanldleOnchange(e)} required/>
     </ContLabel>
     <ContLabel nombre={"Comentarios"} nombrefor="inputComentarios" margin={2}>
-    <input type="number" className="form-control" id="inputComentarios" placeholder="0"  name={"Comentarios"}  onChange={e=>hanldleOnchange(e)} required/>
+    <input type="number" className="form-control" id="inputComentarios" placeholder="0"  name={"S_F_T_comentarios"}  onChange={e=>hanldleOnchange(e)} required/>
     </ContLabel>
     <ContLabel nombre={"Conectados"} nombrefor="inputConecta" margin={2}>
-    <input type="number" className="form-control" id="inputConecta" placeholder="0"  name={"Conectados"}  onChange={e=>hanldleOnchange(e)} required/>
+    <input type="number" className="form-control" id="inputConecta" placeholder="0"  name={"S_F_T_conectados"}  onChange={e=>hanldleOnchange(e)} required/>
     </ContLabel>
     <small id="emailHelp" className="form-text text-muted">
              Todos los campos son obligatorios, si no tiene la información de alguno de ellos debe dejarlo en 0, solo acepta numeros

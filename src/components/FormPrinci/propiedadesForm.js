@@ -46,6 +46,8 @@ const propForms={
        regionalesAr: [{Id: 4, Title: "AMAZONAS"},  {Id: 5, Title: "ANTIOQUIA"},  {Id: 6, Title: "ARAUCA"},  {Id: 7, Title: "ATLÁNTICO"},  {Id: 194, Title: "BOGOTÁ D.C."},  {Id: 8, Title: "BOLÍVAR"},{Id: 9, Title: "BOYACÁ"},  {Id: 10, Title: "CALDAS"},  {Id: 11, Title: "CAQUETÁ"},  {Id: 12, Title: "CASANARE"},   {Id: 16, Title: "CAUCA"},   {Id: 18, Title: "CESAR"},   {Id: 20, Title: "CHOCÓ"},
        {Id: 22, Title: "CÓRDOBA"},   {Id: 24, Title: "CUNDINAMARCA"},   {Id: 26, Title: "DIRECCIÓN GENERAL"},   {Id: 34, Title: "DISTRITO CAPITAL"},   {Id: 35, Title: "GUAINÍA"},   {Id: 37, Title: "GUAJIRA"},   {Id: 39, Title: "GUAVIARE"},   {Id: 41, Title: "HUILA"},   {Id: 47, Title: "MAGDALENA"},   {Id: 54, Title: "META"},   {Id: 64, Title: "NARIÑO"},   {Id: 95, Title: "NORTE DE SANTANDER"},
        {Id: 155, Title: "PUTUMAYO"},   {Id: 159, Title: "QUINDÍO"},   {Id: 161, Title: "RISARALDA"},   {Id: 164, Title: "SAN ANDRÉS"},   {Id: 167, Title: "SANTANDER"},   {Id: 169, Title: "SUCRE"},   {Id: 172, Title: "TOLIMA"},   {Id: 174, Title: "VALLE"},   {Id: 177, Title: "VAUPÉS"},   {Id: 179, Title: "VICHADA"}  ]
+      , 
+      meses:[{id:1,mes:"Enero"},{id:2,mes:"Febrero"},{id:3,mes:"Marzo"},{id:4,mes:"Abril"},{id:5,mes:"Mayo"},{id:6,mes:"Junio"},{id:7,mes:"Julio"},{id:8,mes:"Agosto"},{id:9,mes:"Septiembre"},{id:10,mes:"Octubre"},{id:11,mes:"Noviembre"},{id:12,mes:"Diciembre"}]
 }
 
 export default propForms;

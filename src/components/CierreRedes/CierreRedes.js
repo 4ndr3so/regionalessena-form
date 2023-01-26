@@ -14,7 +14,7 @@ const CierreRedes = ({hanldleOnchange}) => (
   <div className={styles.CierreRedes} data-testid="CierreRedes">
     Cierre mensual de redes Sociales
     <ContLabel nombre={"Selecione la red social"} nombrefor="selectEviRedes" margin={2} >
-      <select id="selectEviRedes" className="form-control" name={"selecRedSocial"} onChange={(e)=>hanldleOnchange(e)} required>
+      <select id="selectEviRedes" className="form-control" name={"CierreMesualRedes_Red_social"} onChange={(e)=>hanldleOnchange(e)} required>
               {
                 redesSoci.map((item,index)=><option>{item.label}</option>)
               }
@@ -22,7 +22,7 @@ const CierreRedes = ({hanldleOnchange}) => (
             
       </ContLabel>
       <ContLabel nombre={"Nuevos seguidores"} nombrefor="inputInter" margin={2} >   
-        <input type="number" className="form-control" id="inputInter" placeholder="0" name={"interacciones"} onChange={(e)=>hanldleOnchange(e)} required/>
+        <input type="number" className="form-control" id="inputInter" placeholder="0" name={"CierreMesualRedes_nuevos_seguido"} onChange={(e)=>hanldleOnchange(e)} required/>
        </ContLabel>  
        <small id="emailHelp" className="form-text text-muted">
               Los campos son obligatorios, el campo Seguidores solo acepta numeros

@@ -14,7 +14,7 @@ const retornaNuevoCon = (valor, checkdiferen, handleChekRedes,hanldleOnchange) =
     let retorNo = "";
     switch (valor) {
       case "Productos audiovisuales":
-        retorNo = <Seleccionable opciones={tipoAudiovisual} texto={dataSelec[1].label} hanldleOnchange={hanldleOnchange} iden={1}></Seleccionable>;
+        retorNo = <Seleccionable opciones={tipoAudiovisual} texto={dataSelec[1].label} hanldleOnchange={hanldleOnchange} iden={1} namePa={"Producto_audiovisual_PA"}></Seleccionable>;
         break;
       case "Streaming live": case "Facebook": case "Twitter":
         retorNo = <FormRedes enfoque={checkdiferen} handleChekRedes={handleChekRedes} hanldleOnchange={hanldleOnchange}></FormRedes>
@@ -26,7 +26,7 @@ const retornaNuevoCon = (valor, checkdiferen, handleChekRedes,hanldleOnchange) =
         retorNo = <CierreRedes hanldleOnchange={hanldleOnchange}></CierreRedes>
         break;
       case "Impactos en medios de comunicación regionales (Medios tradicionales, digitales y redes)":
-        retorNo = <CampoTexto text={"Numero de impactos"} hanldleOnchange={hanldleOnchange} iden={1}></CampoTexto>
+        retorNo = <CampoTexto text={"Numero de impactos"} hanldleOnchange={hanldleOnchange} iden={1} nombreCampo={"numero_x0020_Impactos"}></CampoTexto>
         break;
       default:
         break;
