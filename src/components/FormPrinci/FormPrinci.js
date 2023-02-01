@@ -12,7 +12,7 @@ let numeroImpactos = 0;
 
 
 
-const FormPrinci = ({ regional }) => {
+const FormPrinci = ({ handleFetch }) => {
   const refTextArea= useRef();
   const [store, dispatch] = useContext(StoreContext);
   const { Title, Alcance, Cierre_x0020_mensual_x0020_redes, CierreMesualRedes_nuevos_seguido, CierreMesualRedes_Red_social,
@@ -39,20 +39,44 @@ const FormPrinci = ({ regional }) => {
     setCheckdiferen(!checkdiferen)
   }
 
-  const handleChange = useCallback (e => {
-      console.log(e.target.value)
+  const handleChange = useCallback (evt => {
+     // console.log(e.target.value)
      /* dispatch({
         type:types.change_data,
         payload:{name:e.target.name,value:e.target.value}
         })*/
-        switch (e.target.name) {
+        switch (evt.target.name) {
           case "Tipo_x0020_Evidencia":
-            setEvidencia(e.target.value)
+            setEvidencia(evt.target.value)
+            //para edvolverse y arreglar el link se debe poner el value....
+          /*  dispatch({
+              type:types.change_data,
+              payload:{name:evt.target.name,value:evt.target.value}
+              })*/
             break;
-        case "Alcance":
-           // setAlcanceSelec(e.target.value)
+        case "Enfoque_x0020_diferencial":
+        /*  dispatch({
+            type:types.change_data,
+            payload:{name:evt.target.name,value:checkdiferen}
+            })*/
               break;
+        case "link_evidencia":
+         /* let md5 = require('md5');
+          let hashLin=md5(evt.target.value)
+          dispatch({
+            type:types.change_data,
+            payload:{name:evt.target.name,value:evt.target.value}
+            })
+          dispatch({
+              type:types.change_data,
+              payload:{name:"hash_link",value:hashLin}
+              })*/
+                   break;
           default:
+           /* dispatch({
+              type:types.change_data,
+              payload:{name:evt.target.name,value:evt.target.value}
+              })*/
             break;
           }
       },[dispatch])
@@ -66,7 +90,7 @@ const FormPrinci = ({ regional }) => {
       default:
         break;
     }
-      console.debug(e.target.value)
+     // console.debug(e.target.value)
   }    
   const handleSubmit=(evt)=>{
     console.debug("inicia submit")
@@ -77,27 +101,38 @@ const FormPrinci = ({ regional }) => {
       
       
       for(let i=0;i<evt.target.length;i++){
-        console.debug(evt.target[i].name,evt.target[i].value)
+       // console.debug(evt.target[i].name,evt.target[i].value)
         if(evt.target[i].name==="Enfoque_x0020_diferencial"){
           dispatch({
             type:types.change_data,
             payload:{name:evt.target[i].name,value:checkdiferen}
             })
-        }else{
+        }else if(evt.target[i].name==="link_evidencia"){
+
+          let md5 = require('md5');
+          let hashLin=md5(evt.target[i].value)
           dispatch({
             type:types.change_data,
             payload:{name:evt.target[i].name,value:evt.target[i].value}
             })
-        }
-        
+          dispatch({
+              type:types.change_data,
+              payload:{name:"hash_link",value:hashLin}
+              })
+        }  else{
+          dispatch({
+            type:types.change_data,
+            payload:{name:evt.target[i].name,value:evt.target[i].value}
+            })
+        }   
       }
-      
-      
-    }else{
+      dispatch({type:types.fetch_data })
 
-    }
-    
+      handleFetch(evt);
+      
+    }else{    }
   }
+
   const comprobarlink=(link)=>{
     const regExp1=/^https?\:\/\/*[^\s]+$/
     let valida=regExp1.test(link);
@@ -107,6 +142,7 @@ const FormPrinci = ({ regional }) => {
     
     return valida
   }
+  
   return (
     <div className={styles.FormPrinci} data-testid="FormPrinci">
       <h2>Formulario agregar evidencia</h2>

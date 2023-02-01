@@ -5,13 +5,18 @@ import propForms from '../FormPrinci/propiedadesForm';
 import { StoreContext } from '../../store/StoreProvider';
 import { types } from '../../store/StoreReducer';
 
-const SelecionRegional = () => {
+const SelecionRegional = ({handleClickCambiaPan}) => {
   const [store, dispatch] = useContext(StoreContext);
 const {Regional,Cierre_x0020_mensual_x0020_redes:mes} = store;
   const [seleccionado, setSeleccionado] = useState(true)
   const [seleccionado2, setSeleccionado2] = useState(true)
   const {meses,regionalesAr}=propForms;
-
+ 
+  const handleClick=(e)=>{
+    e.preventDefault();
+    //console.log("ejecuta clic")
+    return handleClickCambiaPan(e);
+  }
 
   const handleChange=(e)=>{
     setSeleccionado(false)
@@ -46,7 +51,7 @@ const {Regional,Cierre_x0020_mensual_x0020_redes:mes} = store;
         }   
       </select>
       <p>Para continuar agregando evidencia debe selecionar el mes</p>
-      <button type="button" className="btn btn-primary mt-2" disabled={seleccionado2}>{`Continuar evidencia con: ${Regional && regionalesAr.find(x=>parseInt(x.Id) === parseInt(Regional)).Title } ${mes && meses.find(x=>parseInt(x.id) === parseInt(mes)).mes}`} </button>
+      <button type="button" onClick={e=>handleClick(e)}className="btn btn-primary mt-2" disabled={seleccionado2}>{`Continuar evidencia con: ${Regional && regionalesAr.find(x=>parseInt(x.Id) === parseInt(Regional)).Title } ${mes && meses.find(x=>parseInt(x.id) === parseInt(mes)).mes}`} </button>
   </div>
   )
 };

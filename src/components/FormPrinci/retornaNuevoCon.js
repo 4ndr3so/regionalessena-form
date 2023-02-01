@@ -10,7 +10,7 @@ import propForms from "./propiedadesForm";
 const retornaNuevoCon = (valor, checkdiferen, handleChekRedes,hanldleOnchange) => {
     const { tipoAudiovisual, dataSelec } = propForms;
     //depende del archivo de propiedades form buscar como optimizar
-    console.log(valor)
+    //console.log(valor)
     let retorNo = "";
     switch (valor) {
       case "Productos audiovisuales":

@@ -183,90 +183,61 @@ export function uploadFileImg(fileRecibido,consecu) {//solo recibe el archivo
   
   /*------------------ --------------------------- ------------------------ ----------------*/
   export function createListItem(fileRecibido) {
+    if(!SP){
+      return new Promise((resolve, reject) => {
+            reject("Problemas con el Sharepoint, intentelo más tardes"); // ¡Todo salió bien!
+      })
+    }
+    
     var deferred = $.Deferred();
-    //console.log(fileRecibido,nombre);
+
     var clientContext = new SP.ClientContext(
-      "https://sena4.sharepoint.com/sites/nube20"
-    );
+          "https://sena4.sharepoint.com/sites/comunica/repositorio_comunicaciones"
+        );
+
     var oList = clientContext
-      .get_web()
-      .get_lists()
-      .getByTitle("01_SENAClasificados");
-  
+          .get_web()
+          .get_lists()
+          .getByTitle("Indicadores_regionales");
+
     var itemCreateInfo = new SP.ListItemCreationInformation();
   
     //console.log(oList);
     var oListItem = oList.addItem(itemCreateInfo);
    // console.log(oListItem);
-    var selectedUser = SP.FieldUserValue.fromUser(
+   /* var selectedUser = SP.FieldUserValue.fromUser(
       fileRecibido.dtoform.autor
-    );
-    //console.log(selectedUser);
+    );*/
+    //console.log(fileRecibido.Title);
   
-    oListItem.set_item("Title", fileRecibido.dtoform.titulo);
-    oListItem.set_item("Tipo_x0020_de_x0020_oferta", fileRecibido.dtoform.tipoOferta);
-    oListItem.set_item("Subt_x00ed_tulo", fileRecibido.dtoform.subtitulo);
-    oListItem.set_item("Valor", fileRecibido.dtoform.valor);
-    oListItem.set_item(
-      "Imagen_x0020_Cargada",
-      `<img alt='${fileRecibido.dtoform.titulo}' src='/sites/nube20/ImagenesClasificados/${fileRecibido.dtoform.Imagen_x0020_Cargada}'>`
-    );
-    if(fileRecibido.dtoform.Imagen_x0020_descriptiva_x0020_A!==""){
-      oListItem.set_item(
-        "Imagen_x0020_descriptiva_x0020_A",
-        `<img alt='${fileRecibido.dtoform.titulo}' src='/sites/nube20/ImagenesClasificados/${fileRecibido.dtoform.Imagen_x0020_descriptiva_x0020_A}'>`
-      );
-    }
-    if(fileRecibido.dtoform.Imagen_x0020_descriptiva_x0020_B!==""){
-      oListItem.set_item(
-        "Imagen_x0020_descriptiva_x0020_B",
-        `<img alt='${fileRecibido.dtoform.titulo}' src='/sites/nube20/ImagenesClasificados/${fileRecibido.dtoform.Imagen_x0020_descriptiva_x0020_B}'>`
-      );
-    }
-    if(fileRecibido.dtoform.Imagen_x0020_descriptiva_x0020_C!==""){
-      oListItem.set_item(
-        "Imagen_x0020_descriptiva_x0020_C",
-        `<img alt='${fileRecibido.dtoform.titulo}' src='/sites/nube20/ImagenesClasificados/${fileRecibido.dtoform.Imagen_x0020_descriptiva_x0020_C}'>`
-      );
-    }
-    if(fileRecibido.dtoform.Imagen_x0020_descriptiva_x0020_D!==""){
-      oListItem.set_item(
-        "Imagen_x0020_descriptiva_x0020_D",
-        `<img alt='${fileRecibido.dtoform.titulo}' src='/sites/nube20/ImagenesClasificados/${fileRecibido.dtoform.Imagen_x0020_descriptiva_x0020_D}'>`
-      );
-    }
-    if(fileRecibido.dtoform.Imagen_x0020_descriptiva_x0020_E!==""){
-      oListItem.set_item(
-        "Imagen_x0020_descriptiva_x0020_E",
-        `<img alt='${fileRecibido.dtoform.titulo}' src='/sites/nube20/ImagenesClasificados/${fileRecibido.dtoform.Imagen_x0020_descriptiva_x0020_E}'>`
-      );
-    }
-    if(fileRecibido.dtoform.Imagen_x0020_descriptiva_x0020_F!==""){
-      oListItem.set_item(
-        "Imagen_x0020_descriptiva_x0020_F",
-        `<img alt='${fileRecibido.dtoform.titulo}' src='/sites/nube20/ImagenesClasificados/${fileRecibido.dtoform.Imagen_x0020_descriptiva_x0020_F}'>`
-      );
-    }
-  
-    oListItem.set_item("Autor_x002d_", selectedUser);
-    oListItem.set_item(
-      "Fecha_x0020_para_x0020_publicaci",
-      fileRecibido.dtoform.fecha
-    );
-    oListItem.set_item(
-      "Fecha_x0020_expiraci_x00f3_n",
-      fileRecibido.dtoform.fecha_expiracion
-    );
-    oListItem.set_item(
-      "Entradilla",
-      fileRecibido.dtoform.entradilla
-    );
-    oListItem.set_item("Cuerpo", fileRecibido.dtoform.cuerpo);
-    oListItem.set_item("Direcci_x00f3_n_x0020_de_x0020_a", fileRecibido.dtoform.url_Link);
-    oListItem.set_item("Tel_x00e9_fonos_x0020_de_x0020_c", fileRecibido.dtoform.telefono);
-    oListItem.set_item("Estado_x0020_actual_x0020_del_x0", fileRecibido.dtoform.estado_clasificado);
-    oListItem.set_item("Regional", fileRecibido.dtoform.regional);
-  
+    oListItem.set_item("Title", fileRecibido.Title);
+    oListItem.set_item("Alcance", fileRecibido.Alcance);
+    oListItem.set_item("CierreMesualRedes_Red_social", fileRecibido.CierreMesualRedes_Red_social);
+    oListItem.set_item("CierreMesualRedes_nuevos_seguido", fileRecibido.CierreMesualRedes_nuevos_seguido);
+    oListItem.set_item("Cierre_x0020_mensual_x0020_redes", fileRecibido.Cierre_x0020_mensual_x0020_redes);
+    oListItem.set_item("Descripci_x00f3_n", fileRecibido.Descripci_x00f3_n);
+    oListItem.set_item("Enfoque_x0020_diferencial",fileRecibido.Enfoque_x0020_diferencial);
+    oListItem.set_item("hash_link",fileRecibido.hash_link);
+    oListItem.set_item("link_evidencia", fileRecibido.link_evidencia);
+    oListItem.set_item("numero_x0020_Impactos", fileRecibido.numero_x0020_Impactos);
+    oListItem.set_item("PQRS_contestadas", fileRecibido.PQRS_contestadas);
+    oListItem.set_item("PQRS_contestados_bandejaEntrada", fileRecibido.PQRS_contestados_bandejaEntrada);
+    oListItem.set_item("PQRS_pregunta", fileRecibido.PQRS_pregunta);
+    oListItem.set_item("PQRS_preguntas_bandeja_entrada", fileRecibido.PQRS_preguntas_bandeja_entrada);
+    oListItem.set_item("PQRS_Sin_contestar_bandeja_entra", fileRecibido.PQRS_Sin_contestar_bandeja_entra);
+    oListItem.set_item("PQRS_sin_contestar", fileRecibido.PQRS_sin_contestar);
+    oListItem.set_item("PQRS_temas", fileRecibido.PQRS_temas);
+    oListItem.set_item("Producto_audiovisual_PA", fileRecibido.Producto_audiovisual_PA);
+    oListItem.set_item("S_F_T_alcance", fileRecibido.S_F_T_alcance);
+    oListItem.set_item("S_F_T_comentarios", fileRecibido.S_F_T_comentarios);
+    oListItem.set_item("S_F_T_conectados", fileRecibido.S_F_T_conectados);
+    oListItem.set_item("S_F_T_interacciones", fileRecibido.S_F_T_interacciones);
+    oListItem.set_item("S_F_T_Lenguaje_sennas", fileRecibido.S_F_T_Lenguaje_sennas);
+    oListItem.set_item("Tipo_x0020_Evidencia", fileRecibido.Tipo_x0020_Evidencia);
+    oListItem.set_item("Regional", fileRecibido.Regional);
+    oListItem.set_item("Fecha_x0020_de_x0020_la_x0020_ev", fileRecibido.Fecha_x0020_de_x0020_la_x0020_ev);
+    oListItem.set_item("tipo_enfoqueDi", fileRecibido.tipo_enfoqueDi);
+    
     oListItem.update();
   
     clientContext.load(oListItem);
@@ -277,10 +248,11 @@ export function uploadFileImg(fileRecibido,consecu) {//solo recibe el archivo
         deferred.resolve(sender, args);
       },
       function (sender, args) {
+        console.debug(args.get_message())
         /* alert(
           "Request failed. " + args.get_message() + "\n" + args.get_stackTrace()
         ); */
-        deferred.reject(sender, args);
+        deferred.reject(sender, args.get_message());
       }
     );
     return deferred.promise();
@@ -290,6 +262,23 @@ export function uploadFileImg(fileRecibido,consecu) {//solo recibe el archivo
   
   
   let varie=0;
+  /*-------------------------------------------------------------------------------------------------*/
+  export function simulaCarga(){
+    return new Promise((resolve, reject) => {
+      // Llamamos a resolve(...) cuando lo que estabamos haciendo finaliza con éxito, y reject(...) cuando falla.
+      let varie=0;
+      setTimeout(function () {
+        
+        if(varie===9){
+          reject("rechazo el archivo"); // ¡Todo salió bien!
+        }else{
+          resolve("Suvio el archivo"); // ¡Todo salió bien!
+        }
+        
+      }, 2000);
+    })
+  }
+
   /*---------- ------------------------------ -------------------------- ------------------------- */
   export function apijsonCargaim1(fileRecibido,name) {//recibe solo el archivo
   

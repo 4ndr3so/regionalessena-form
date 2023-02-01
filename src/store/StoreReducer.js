@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { createListItem } from "../api/apiRest";
 const initialState = {
     
          "Title": "" ,
@@ -7,7 +9,7 @@ const initialState = {
          "Cierre_x0020_mensual_x0020_redes": "1" ,
          "Descripci_x00f3_n": "" ,
          "Enfoque_x0020_diferencial": "" ,
-         "hash_link": "23234aqw232dw2a23daqwa" ,
+         "hash_link": "" ,
         
            "PublishingPageImage":
                ""
@@ -42,10 +44,13 @@ const types={
 
 const StoreReducer = (state, action) => {
     switch (action.type) {
-        case types.fetch_data:
-
+        case types.fetch_data:             
+                  return{
+                    ...state}
+        
             break;
         case types.change_data:
+           // console.debug("change data")
             return{
                 ...state,
                 [action.payload.name]:action.payload.value
