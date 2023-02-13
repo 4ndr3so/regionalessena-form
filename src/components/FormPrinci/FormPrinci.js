@@ -12,7 +12,7 @@ let numeroImpactos = 0;
 
 
 
-const FormPrinci = ({ handleFetch }) => {
+const FormPrinci = ({ handleFetch,handleCancel }) => {
   const refTextArea= useRef();
   const [store, dispatch] = useContext(StoreContext);
   const { Title, Alcance, Cierre_x0020_mensual_x0020_redes, CierreMesualRedes_nuevos_seguido, CierreMesualRedes_Red_social,
@@ -187,7 +187,17 @@ const FormPrinci = ({ handleFetch }) => {
       <p>Descripción ...</p>
       <form className="needs-validation was-validated bordeFor animate__animated animate__fadeIn"
       onSubmit={handleSubmit}>
-        <ContLabel nombre={"Nombre actividad"} nombrefor="nombreActi" margin={4} obligatorio={true}>
+        <ContLabel nombre={"Alcance del producto"} nombrefor="selectAlcance" margin={4} obligatorio={true}>
+          <select id="selectAlcance" className="form-select" name="Alcance" onChange={e => handleChange(e)} required>
+            {
+              alcanceComu.map((item, index) => <option key={item.value} >{item.label}</option>)
+            }
+          </select>
+          <small id="emailHelp" className="form-text text-muted">
+           Alcance es obligatorio, seleccionelo de la lista
+          </small>
+        </ContLabel>
+        {/*<ContLabel nombre={"Nombre actividad"} nombrefor="nombreActi" margin={4} obligatorio={true}>
           <input
             type="text"
             className="form-control"
@@ -202,8 +212,8 @@ const FormPrinci = ({ handleFetch }) => {
           <small id="emailHelp" className="form-text text-muted">
             Nombre de la actividad es obligatoio
           </small>
-        </ContLabel>
-        <ContLabel nombre={"Tipo evidencia"} nombrefor="selectEvi" margin={4} obligatorio={true}>
+          </ContLabel>*/}
+        <ContLabel nombre={"Tipo de producto"} nombrefor="selectEvi" margin={4} obligatorio={true}>
           <select id="selectEvi" className="form-select"  name="Tipo_x0020_Evidencia"  onChange={e => handleChange(e)} required>
             {
               dataSelec.map((item, index) => <option key={item.value} value={item.value}>{item.label}</option>)
@@ -214,16 +224,6 @@ const FormPrinci = ({ handleFetch }) => {
           </small>
         </ContLabel>
         {eviden && retornaNuevoCon(eviden, checkdiferen, handleChekRedes,hanldleOnchange)}
-        <ContLabel nombre={"Alcance"} nombrefor="selectAlcance" margin={4} obligatorio={true}>
-          <select id="selectAlcance" className="form-select" name="Alcance" onChange={e => handleChange(e)} required>
-            {
-              alcanceComu.map((item, index) => <option key={item.value} >{item.label}</option>)
-            }
-          </select>
-          <small id="emailHelp" className="form-text text-muted">
-           Alcance es obligatorio, seleccionelo de la lista
-          </small>
-        </ContLabel>
         <ContLabel nombre={"Descripción u observación"} nombrefor="decrip" margin={4}>
           <textarea rows="3"
             type="text"
@@ -250,17 +250,9 @@ const FormPrinci = ({ handleFetch }) => {
           />
           { validaText ? "":<div className="text-danger">Debe ser un link valido, empezar por http o https, no tener espacios</div>}
           <small id="emailHelp" className="form-text text-muted" >
-            EL enlace de la evidencia es obligatorio, debe ser un enlace valido 
+            EL enlace de la evidencia es obligatorio, debe ser un enlace valido y no se debe repetir con ningún otro subido con anterioridad
           </small>
         </ContLabel>
-        {/*<div className="form-group mb-4 row">
-        <label htmlFor="imagenUpload" className="col-sm-2 col-form-label">Imagen de la evidencia</label>
-        <div className="col-sm-10">
-          <label htmlFor="imagenUpload" class="btn btn-primary">Subir imagen</label>
-          <input type="file" style={{visibility:"hidden"}} id="imagenUpload" />
-            </div>
-            </div>*/
-        }
         <ContLabel nombre={"Fecha de la evidencia"} nombrefor="fechaEvi" margin={4} obligatorio={true}>
           <input type="date" className="form-control-file" id="fechaEvi" 
             name="Fecha_x0020_de_x0020_la_x0020_ev"
@@ -271,28 +263,10 @@ const FormPrinci = ({ handleFetch }) => {
             La fecha es obligatoria, escriba la fecha de la actividad. La fecha del dia que subio la evidencia el sistema la toma
           </small>
         </ContLabel>
-        <ContLabel nombre={"Enfoque Diferencial"} nombrefor="check1" margin={4}>
-          <div className="form-check">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              id="check1"
-              defaultChecked={checkdiferen}
-              name="Enfoque_x0020_diferencial"
-              onChange={(e) => handleChekRedes(e)}
-            />
-            <small id="emailHelp" className="form-text text-muted" >
-            Seleccione si la actividad tuvo enfoque diferencial
-          </small>
-          </div>
-        </ContLabel>
-        {
-          checkdiferen ? <Seleccionable opciones={enfoqueDife}  texto={"Enfoque diferencial"} hanldleOnchange={hanldleOnchange} iden={2} namePa={"tipo_enfoqueDi"}></Seleccionable> : ""
-        }
         <button type="submit"  className={styles.mrd+" btn btn-success"} >
           Guardar evidencia
         </button>
-        <button type="submit" className="btn btn-danger" >
+        <button type="button" className="btn btn-danger" onClick={handleCancel}>
           Cancelar
         </button>
       </form>

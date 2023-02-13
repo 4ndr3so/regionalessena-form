@@ -35,7 +35,7 @@ const ControlFetch = ({subida}) => {
                       console.debug("¡NO! ");
                       console.debug(fail);
                       console.debug(mensaje);
-                      subida(false,mensaje);
+                      subida(false,mensaje +" "+fail);
                     }
                   );
 

@@ -36,12 +36,18 @@ const handleTerminaSubida = (result,mensaje)=>{
   console.debug(result)
 
 }
+const handleCancel=()=>{
+  setVisuForm(false);
+  setMuestraCarga(false);
+  setFetchData(false);
+  setResultOpera(false);
+}
   return (
     <div className="App container">
 
       <StoreProvider >
         
-        {visuForm ? !muestraCarga && <FormPrinci handleFetch={handleFetch}></FormPrinci>:<SelecionRegional handleClickCambiaPan={(e)=>handleClickCambiaPan(e)}></SelecionRegional>}
+        {visuForm ? !muestraCarga && <FormPrinci handleFetch={handleFetch} handleCancel={handleCancel}></FormPrinci>:<SelecionRegional handleClickCambiaPan={(e)=>handleClickCambiaPan(e)}></SelecionRegional>}
         {muestraCarga && !fetchData && <ControlFetch subida={handleTerminaSubida}></ControlFetch>}  
         {fetchData &&  (resultOpera ?<ExitoSubida></ExitoSubida>:<ErrorSubida mensajeError={mensaje} regresar={regresar}></ErrorSubida>)}     
       </StoreProvider>
