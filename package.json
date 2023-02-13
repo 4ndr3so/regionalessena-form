@@ -1,6 +1,6 @@
 {
   "name": "form_region",
-  "homepage": "/sites/comunica/repositorio_comunicaciones/SiteAssets/evidenciaIndica/",
+  "homepage": "http:///sites/comunica/repositorio_comunicaciones/SiteAssets/evidenciaIndica/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -44,5 +44,13 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/lp.carlosorjuela/regionalessena-form.git"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/lp.carlosorjuela/regionalessena-form/issues"
+  }
 }

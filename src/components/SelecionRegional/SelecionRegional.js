@@ -18,6 +18,22 @@ const {Regional,Cierre_x0020_mensual_x0020_redes:mes} = store;
     return handleClickCambiaPan(e);
   }
 
+  const limitarMes=()=>{
+    let datehoy=new Date();
+    let mesSelec=[];
+    let diaSe=datehoy.getDate();
+    let monSele= datehoy.getMonth(); 
+   
+    if(diaSe<=5){
+      if(monSele==0){
+        mesSelec.push(11);
+      }else{
+        mesSelec.push(parseInt(datehoy.getMonth())-1);
+      }
+    }
+    mesSelec.push(datehoy.getMonth());
+    return meses.filter((val)=>  mesSelec.includes(val.id)) 
+  }
   const handleChange=(e)=>{
     setSeleccionado(false)
   //  console.log(e.target.value);
@@ -47,7 +63,7 @@ const {Regional,Cierre_x0020_mensual_x0020_redes:mes} = store;
       <p>Para selecionar el mes, debe seleccionar primero la regional</p>
       <select className="form-select" size="6" aria-label="size 6 select example" name={"Cierre_x0020_mensual_x0020_redes"} disabled={seleccionado} onChange={e => handleChangeMes(e)}>
         {
-            meses.map((item,index)=><option value={item.id} key={item.id}>{item.mes}</option>)
+            limitarMes().map((item,index)=><option value={item.id} key={item.id}>{item.mes}</option>)
         }   
       </select>
       <p>Para continuar agregando evidencia debe selecionar el mes</p>

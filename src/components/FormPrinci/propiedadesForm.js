@@ -43,11 +43,26 @@ const propForms={
         {  value:"Productos SENA al aire", label:"Productos SENA al aire"},
         {  value:"Eventos virtuales presenciales- leguas de señas y/o tácticas en vivo", label:"Eventos virtuales presenciales- leguas de señas y/o tácticas en vivo"},
       ],
-       regionalesAr: [{Id: 4, Title: "AMAZONAS"},  {Id: 5, Title: "ANTIOQUIA"},  {Id: 6, Title: "ARAUCA"},  {Id: 7, Title: "ATLÁNTICO"},  {Id: 194, Title: "BOGOTÁ D.C."},  {Id: 8, Title: "BOLÍVAR"},{Id: 9, Title: "BOYACÁ"},  {Id: 10, Title: "CALDAS"},  {Id: 11, Title: "CAQUETÁ"},  {Id: 12, Title: "CASANARE"},   {Id: 16, Title: "CAUCA"},   {Id: 18, Title: "CESAR"},   {Id: 20, Title: "CHOCÓ"},
-       {Id: 22, Title: "CÓRDOBA"},   {Id: 24, Title: "CUNDINAMARCA"},   {Id: 26, Title: "DIRECCIÓN GENERAL"},   {Id: 34, Title: "DISTRITO CAPITAL"},   {Id: 35, Title: "GUAINÍA"},   {Id: 37, Title: "GUAJIRA"},   {Id: 39, Title: "GUAVIARE"},   {Id: 41, Title: "HUILA"},   {Id: 47, Title: "MAGDALENA"},   {Id: 54, Title: "META"},   {Id: 64, Title: "NARIÑO"},   {Id: 95, Title: "NORTE DE SANTANDER"},
-       {Id: 155, Title: "PUTUMAYO"},   {Id: 159, Title: "QUINDÍO"},   {Id: 161, Title: "RISARALDA"},   {Id: 164, Title: "SAN ANDRÉS"},   {Id: 167, Title: "SANTANDER"},   {Id: 169, Title: "SUCRE"},   {Id: 172, Title: "TOLIMA"},   {Id: 174, Title: "VALLE"},   {Id: 177, Title: "VAUPÉS"},   {Id: 179, Title: "VICHADA"}  ]
+       regionalesAr: [{Id: 1, Title: "AMAZONAS"},  {Id: 2, Title: "ANTIOQUIA"},  {Id: 3, Title: "ARAUCA"},  {Id: 4, Title: "ATLÁNTICO"},  {Id:35, Title: "BOGOTÁ D.C."},  {Id: 5, Title: "BOLÍVAR"},{Id: 6, Title: "BOYACÁ"},  {Id: 7, Title: "CALDAS"},  {Id:8, Title: "CAQUETÁ"},  {Id:9, Title: "CASANARE"},   {Id:10, Title: "CAUCA"},   {Id:11, Title: "CESAR"},   {Id:12, Title: "CHOCÓ"},
+       {Id:13, Title: "CÓRDOBA"},   {Id:14, Title: "CUNDINAMARCA"},   {Id:15, Title: "DIRECCIÓN GENERAL"},   {Id:16, Title: "DISTRITO CAPITAL"},   {Id:17, Title: "GUAINÍA"},   {Id:18, Title: "GUAJIRA"},   {Id:19, Title: "GUAVIARE"},   {Id:41, Title: "HUILA"},   {Id:20, Title: "MAGDALENA"},   {Id:22, Title: "META"},   {Id:23, Title: "NARIÑO"},   {Id:24, Title: "NORTE DE SANTANDER"},
+       {Id:25, Title: "PUTUMAYO"},   {Id:26, Title: "QUINDÍO"},   {Id:27, Title: "RISARALDA"},   {Id:28, Title: "SAN ANDRÉS"},   {Id:29, Title: "SANTANDER"},   {Id:30, Title: "SUCRE"},   {Id:31, Title: "TOLIMA"},   {Id:32, Title: "VALLE"},   {Id:33, Title: "VAUPÉS"},   {Id:34, Title: "VICHADA"}  ]
       , 
-      meses:[{id:1,mes:"Enero"},{id:2,mes:"Febrero"},{id:3,mes:"Marzo"},{id:4,mes:"Abril"},{id:5,mes:"Mayo"},{id:6,mes:"Junio"},{id:7,mes:"Julio"},{id:8,mes:"Agosto"},{id:9,mes:"Septiembre"},{id:10,mes:"Octubre"},{id:11,mes:"Noviembre"},{id:12,mes:"Diciembre"}]
+      meses:[{id:0,mes:"Enero"},{id:1,mes:"Febrero"},{id:2,mes:"Marzo"},{id:3,mes:"Abril"},{id:4,mes:"Mayo"},{id:5,mes:"Junio"},{id:6,mes:"Julio"},{id:7,mes:"Agosto"},{id:8,mes:"Septiembre"},{id:9,mes:"Octubre"},{id:10,mes:"Noviembre"},{id:11,mes:"Diciembre"}],
+      alcanceDigital:[
+       {  value:"", label:""},
+       {  value:"Facebook", label:"Facebook"},
+       {  value:"Twitter", label:"Twitter"},
+     ],tacticas:[
+      {  value:"", label:""},
+      {  value:"Facebook", label:"Facebook"},
+      {  value:"Instagram", label:"Instagram"},
+      {  value:"Youtube SENA Comunica", label:"Youtube SENA Comunica"},
+    ],multiplataforma:[
+      {  value:"", label:""},
+      {  value:"Video", label:"Video"},
+      {  value:"Radio", label:"Radio"},
+      {  value:"Podcast", label:"Podcast"},
+    ]
 }
 
 export default propForms;

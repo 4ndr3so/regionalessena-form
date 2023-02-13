@@ -22,7 +22,7 @@ const FormPrinci = ({ handleFetch }) => {
     S_F_T_conectados, S_F_T_interacciones, S_F_T_Lenguaje_sennas, Tipo_x0020_Evidencia, Regional,
     Fecha_x0020_de_x0020_la_x0020_ev
   } = store;
-
+  const {meses,regionalesAr}=propForms;
   //console.log(store.state)
   const { alcanceComu, dataSelec, enfoqueDife } = propForms;
   const [eviden, setEvidencia] = useState(dataSelec[0].value)
@@ -142,10 +142,48 @@ const FormPrinci = ({ handleFetch }) => {
     
     return valida
   }
+  const selecRegio=()=>{
+    let Nom=regionalesAr.filter((v)=>v.Id==Regional)
+    return Nom[0].Title
+  }
+
+  const selecMonth=()=>{
+    let nom=meses.filter((v)=>v.id==Cierre_x0020_mensual_x0020_redes)  
+    return nom[0].mes
+  }
+
+  const selectMindate=()=>{
+    let obtenerMes="";
+    if(parseInt(Cierre_x0020_mensual_x0020_redes)<10){
+      obtenerMes="0"+(parseInt(Cierre_x0020_mensual_x0020_redes)+1);
+    }else{
+      obtenerMes=(parseInt(Cierre_x0020_mensual_x0020_redes)+1);
+    //  console.log("a")
+    }
+
+    var today = new Date();
+    let dateFi=today.getFullYear()+"-"+obtenerMes+"-01";
+    return dateFi;
+  }
+
+  const selecMaxDate=()=>{
+    let obtenerMes="";
+    if(parseInt(Cierre_x0020_mensual_x0020_redes)<10){
+      obtenerMes="0"+(parseInt(Cierre_x0020_mensual_x0020_redes)+1);
+    }else{
+      obtenerMes=(parseInt(Cierre_x0020_mensual_x0020_redes)+1);
+      console.log("a")
+    }
+    var today = new Date();
+    let lastday=new Date(today.getFullYear(), (parseInt(Cierre_x0020_mensual_x0020_redes)+1), 0).getDate()
+    //console.log(lastday)
+    let dateFi=today.getFullYear()+"-"+obtenerMes+"-"+lastday;
+    return dateFi
+  }
   
   return (
     <div className={styles.FormPrinci} data-testid="FormPrinci">
-      <h2>Formulario agregar evidencia</h2>
+      <h2>Agregar evidencia para {selecRegio()} en {selecMonth()}</h2>
       <p>Descripción ...</p>
       <form className="needs-validation was-validated bordeFor animate__animated animate__fadeIn"
       onSubmit={handleSubmit}>
@@ -226,6 +264,8 @@ const FormPrinci = ({ handleFetch }) => {
         <ContLabel nombre={"Fecha de la evidencia"} nombrefor="fechaEvi" margin={4} obligatorio={true}>
           <input type="date" className="form-control-file" id="fechaEvi" 
             name="Fecha_x0020_de_x0020_la_x0020_ev"
+            min={selectMindate()}
+            max={selecMaxDate()}
             onChange={e => handleChange(e)} required/>
             <small id="emailHelp" className="form-text text-muted" >
             La fecha es obligatoria, escriba la fecha de la actividad. La fecha del dia que subio la evidencia el sistema la toma
@@ -242,15 +282,18 @@ const FormPrinci = ({ handleFetch }) => {
               onChange={(e) => handleChekRedes(e)}
             />
             <small id="emailHelp" className="form-text text-muted" >
-            Seleccione si la actividad tubo enfoque diferencial
+            Seleccione si la actividad tuvo enfoque diferencial
           </small>
           </div>
         </ContLabel>
         {
           checkdiferen ? <Seleccionable opciones={enfoqueDife}  texto={"Enfoque diferencial"} hanldleOnchange={hanldleOnchange} iden={2} namePa={"tipo_enfoqueDi"}></Seleccionable> : ""
         }
-        <button type="submit" className="btn btn-primary">
+        <button type="submit"  className={styles.mrd+" btn btn-success"} >
           Guardar evidencia
+        </button>
+        <button type="submit" className="btn btn-danger" >
+          Cancelar
         </button>
       </form>
     </div>
