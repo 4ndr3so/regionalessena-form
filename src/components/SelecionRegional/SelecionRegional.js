@@ -54,19 +54,19 @@ const {Regional,Cierre_x0020_mensual_x0020_redes:mes} = store;
   //cierre mensual redes se usara con el numero del mes
   return (
     <div className={"row mt-4 mb-3"+styles.SelecionRegional} data-testid="SelecionRegional">
-        <p>Selecione la regional</p>
+        <p>Seleccione su regional</p>
       <select className="form-select" size="6" aria-label="size 6 select example" name={"Regional"} onChange={e => handleChange(e)}>
           {
               regionalesAr.map((item,index)=><option value={item.Id} key={item.Id}>{item.Title}</option>)
           }    
       </select>
-      <p>Para selecionar el mes, debe seleccionar primero la regional</p>
+      <p>Para continuar agregando evidencia debe seleccionar el mes</p>
       <select className="form-select" size="6" aria-label="size 6 select example" name={"Cierre_x0020_mensual_x0020_redes"} disabled={seleccionado} onChange={e => handleChangeMes(e)}>
         {
             limitarMes().map((item,index)=><option value={item.id} key={item.id}>{item.mes}</option>)
         }   
       </select>
-      <p>Para continuar agregando evidencia debe selecionar el mes</p>
+      <p>Antes de continuar verifique que esta seleccionando su regional y el mes del reporte</p>
       <button type="button" onClick={e=>handleClick(e)}className="btn btn-primary mt-2" disabled={seleccionado2}>{`Continuar evidencia con: ${Regional && regionalesAr.find(x=>parseInt(x.Id) === parseInt(Regional)).Title } ${mes && meses.find(x=>parseInt(x.id) === parseInt(mes)).mes}`} </button>
   </div>
   )

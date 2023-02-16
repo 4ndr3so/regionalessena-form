@@ -1,6 +1,6 @@
 {
   "name": "form_region",
-  "homepage": "http:///sites/comunica/repositorio_comunicaciones/SiteAssets/evidenciaIndica/",
+  "homepage": "/sites/comunica/repositorio_comunicaciones/SiteAssets/evidenciaIndica/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

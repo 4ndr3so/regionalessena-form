@@ -184,7 +184,7 @@ const FormPrinci = ({ handleFetch,handleCancel }) => {
   return (
     <div className={styles.FormPrinci} data-testid="FormPrinci">
       <h2>Agregar evidencia para {selecRegio()} en {selecMonth()}</h2>
-      <p>Descripción ...</p>
+      <p>En 2023 todos los productos deben tener ajustes razonables en la comunicación para el enfoque pluralista y diferencial (lengua señas, vídeos subtitulados, notas internas que exalten derechos de las poblaciones y logros del SENA con las poblaciones vulnerables).</p><p><b className="text-danger">*</b>Los campos con asterisco son obligatorios</p>
       <form className="needs-validation was-validated bordeFor animate__animated animate__fadeIn"
       onSubmit={handleSubmit}>
         <ContLabel nombre={"Alcance del producto"} nombrefor="selectAlcance" margin={4} obligatorio={true}>
@@ -194,7 +194,7 @@ const FormPrinci = ({ handleFetch,handleCancel }) => {
             }
           </select>
           <small id="emailHelp" className="form-text text-muted">
-           Alcance es obligatorio, seleccionelo de la lista
+          Seleccione de la lista, si el alcance del producto es de comunicación interna o externa
           </small>
         </ContLabel>
         {/*<ContLabel nombre={"Nombre actividad"} nombrefor="nombreActi" margin={4} obligatorio={true}>
@@ -220,7 +220,7 @@ const FormPrinci = ({ handleFetch,handleCancel }) => {
             }
           </select>
           <small id="emailHelp" className="form-text text-muted">
-            Tipo de evidencia es obligatorio, seleccionelo de la lista
+          De acuerdo al alcance del ítem anterior, seleccione el tipo de producto que va a reportar 
           </small>
         </ContLabel>
         {eviden && retornaNuevoCon(eviden, checkdiferen, handleChekRedes,hanldleOnchange)}
@@ -231,13 +231,14 @@ const FormPrinci = ({ handleFetch,handleCancel }) => {
             id="decrip"
             placeholder="Descripción de la evidencia"
             name="Descripci_x00f3_n"
+            maxlength="250"
             onChange={e => handleChange(e)}
           />
           <small id="emailHelp" className="form-text text-muted">
-            Agregue una descipción u observaciones si lo considera necesario
+           Realice una descripción del producto a reportar ( Máx. 250 caracteres)
           </small>
         </ContLabel>
-        <ContLabel nombre={"Link"} nombrefor="linkacti" margin={4} obligatorio={true}>
+        <ContLabel nombre={"Enlace"} nombrefor="linkacti" margin={4} obligatorio={true}>
           <textarea
             type="text"
             className="form-control"
@@ -248,9 +249,9 @@ const FormPrinci = ({ handleFetch,handleCancel }) => {
             ref={refTextArea}
             required
           />
-          { validaText ? "":<div className="text-danger">Debe ser un link valido, empezar por http o https, no tener espacios</div>}
+          { validaText ? "":<div className="text-danger">Debe ser un enlace valido, empezar por http o https, no tener espacios</div>}
           <small id="emailHelp" className="form-text text-muted" >
-            EL enlace de la evidencia es obligatorio, debe ser un enlace valido y no se debe repetir con ningún otro subido con anterioridad
+          El enlace de la evidencia es obligatorio, debe ser un enlace válido y no deberá acortarse, la herramienta no le permitirá avanzar si el link que registra ya existe en reportes anteriores. 
           </small>
         </ContLabel>
         <ContLabel nombre={"Fecha de la evidencia"} nombrefor="fechaEvi" margin={4} obligatorio={true}>
@@ -259,8 +260,8 @@ const FormPrinci = ({ handleFetch,handleCancel }) => {
             min={selectMindate()}
             max={selecMaxDate()}
             onChange={e => handleChange(e)} required/>
-            <small id="emailHelp" className="form-text text-muted" >
-            La fecha es obligatoria, escriba la fecha de la actividad. La fecha del dia que subio la evidencia el sistema la toma
+            <small id="emailHelp" className="form-text text-muted" >&nbsp; &nbsp; &nbsp;
+            Relacione la fecha en la que realizó la actividad.
           </small>
         </ContLabel>
         <button type="submit"  className={styles.mrd+" btn btn-success"} >
