@@ -8,7 +8,7 @@ const { alcanceDigital} = propForms;
 const CierreRedes = ({hanldleOnchange}) => (
   <div className={styles.CierreRedes} data-testid="CierreRedes">
     <p></p>
-    <ContLabel nombre={"Selecione la red social"} nombrefor="selectEviRedes" margin={2} >
+    <ContLabel nombre={"Seleccione la red social"} nombrefor="selectEviRedes" margin={2} >
       <select id="selectEviRedes" className="form-select" name={"CierreMesualRedes_Red_social"} onChange={(e)=>hanldleOnchange(e)} required>
               {
                 alcanceDigital.map((item,index)=><option key={item.value}>{item.label}</option>)
@@ -20,7 +20,7 @@ const CierreRedes = ({hanldleOnchange}) => (
         <input type="number" className="form-control" id="inputInter" placeholder="0" name={"CierreMesualRedes_nuevos_seguido"} onChange={(e)=>hanldleOnchange(e)} min="0" required/>
        </ContLabel>  
        <small id="emailHelp" className="form-text text-muted">
-       Dilgencie el dato númerico que aparece en la Herramienta Meta Bussiness Suite para Facebook y Analytics para Twitter al cierre de mes
+       Diligencie el dato numérico que aparece en la Herramienta Meta Bussiness Suite para Facebook y Analytics para Twitter al cierre de mes
             </small>     
   </div>
 );
