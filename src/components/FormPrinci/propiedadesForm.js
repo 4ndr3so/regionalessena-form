@@ -4,7 +4,7 @@ const propForms={
         {  value:"Comunicación externa", label:"Comunicación Externa"},
         {  value:"Comunicación Interna", label:"Comunicación Interna"},
       ],
-       dataSelec :[
+       dataSelec2 :[
         {  value:"", label:""},
         {  value:"Venga le cuento en 90 segundos", label:"Venga le cuento en 90 segundos"},
         {  value:"Newsletter SENA informa (Boletín interno)", label:"Newsletter SENA informa (Boletín interno)"},
@@ -14,6 +14,9 @@ const propForms={
         {  value:"Fotogalería", label:"Fotogalería"},
         {  value:"Nota escrita para la Nube", label:"Nota escrita para la Nube"},
         {  value:"Podcast", label:"Podcast"},
+        
+      ],dataSelec:[
+        {  value:"", label:""},
         {  value:"Boletín de prensa", label:"Boletín de prensa"},
         {  value:"Comunicado a la Opinión Pública", label:"Comunicado a la Opinión Pública"},
         {  value:"Contenido periodístico para la revista y/o periódico SENA COMUNICA impreso y/o Digital", label:"Contenido periodístico para la revista y/o periódico SENA COMUNICA impreso y/o Digital"},

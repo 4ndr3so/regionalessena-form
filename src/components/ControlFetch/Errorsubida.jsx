@@ -6,8 +6,8 @@ const ErrorSubida = ({mensajeError,regresar}) => {
       <h4 className="alert-heading">❌</h4>
       <p>
         Nos encontramos el siguiente error:<br></br> { mensajeError} <br></br>
-        {mensajeError==="El elemento de lista no se pudo agregar ni actualizar porque se encontraron valores duplicados en los siguientes campos de la lista: [hash_link]."
-        ?"El enlace adjunto para la evidencia está duplicado, lo cual no está permitido.":""}
+        {mensajeError.includes("[hash_link]")
+        ?"El enlace adjunto para la evidencia está duplicado, lo cual no está permitido.":"Asegúrese de tener internet e Inténtelo de nuevo"}
       </p>
       <hr />
       <p className="mb-0">

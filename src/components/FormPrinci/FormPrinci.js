@@ -24,11 +24,11 @@ const FormPrinci = ({ handleFetch,handleCancel }) => {
   } = store;
   const {meses,regionalesAr}=propForms;
   //console.log(store.state)
-  const { alcanceComu, dataSelec, enfoqueDife } = propForms;
+  const { alcanceComu, dataSelec, dataSelec2 } = propForms;
   const [eviden, setEvidencia] = useState(dataSelec[0].value)
   const [validaText, setValidaText] = useState(true)
   const [checkdiferen, setCheckdiferen] = useState(false);
- 
+  const [alcance, setAlcance] = useState("");
  
 
   const handleChekRedes = (e, v2) => {
@@ -46,6 +46,14 @@ const FormPrinci = ({ handleFetch,handleCancel }) => {
         payload:{name:e.target.name,value:e.target.value}
         })*/
         switch (evt.target.name) {
+          case "Alcance":
+            setAlcance(evt.target.value)
+            //para edvolverse y arreglar el link se debe poner el value....
+          /*  dispatch({
+              type:types.change_data,
+              payload:{name:evt.target.name,value:evt.target.value}
+              })*/
+            break;
           case "Tipo_x0020_Evidencia":
             setEvidencia(evt.target.value)
             //para edvolverse y arreglar el link se debe poner el value....
@@ -214,9 +222,10 @@ const FormPrinci = ({ handleFetch,handleCancel }) => {
           </small>
           </ContLabel>*/}
         <ContLabel nombre={"Tipo de producto"} nombrefor="selectEvi" margin={4} obligatorio={true}>
-          <select id="selectEvi" className="form-select"  name="Tipo_x0020_Evidencia"  onChange={e => handleChange(e)} required>
-            {
-              dataSelec.map((item, index) => <option key={item.value} value={item.value}>{item.label}</option>)
+          <select id="selectEvi" className="form-select"  name="Tipo_x0020_Evidencia"  onChange={e => handleChange(e)} required disabled={alcance===""? true:false}>
+            { alcance && alcance==="Comunicación Externa"?
+              dataSelec.map((item, index) => <option key={item.value} value={item.value}>{item.label}</option>):
+              dataSelec2.map((item, index) => <option key={item.value} value={item.value}>{item.label}</option>)
             }
           </select>
           <small id="emailHelp" className="form-text text-muted">
@@ -231,7 +240,7 @@ const FormPrinci = ({ handleFetch,handleCancel }) => {
             id="decrip"
             placeholder="Descripción de la evidencia"
             name="Descripci_x00f3_n"
-            maxlength="250"
+            maxLength="250"
             onChange={e => handleChange(e)}
           />
           <small id="emailHelp" className="form-text text-muted">
