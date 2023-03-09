@@ -14,6 +14,9 @@ const propForms={
         {  value:"Fotogalería", label:"Fotogalería"},
         {  value:"Nota escrita para la Nube", label:"Nota escrita para la Nube"},
         {  value:"Podcast", label:"Podcast"},
+        {  value:"Flash Informativo", label:"Flash Informativo"},
+        {  value:"Campañas de comunicación interna divulgadas-Aplica DG", label:"Campañas de comunicación interna divulgadas-Aplica DG"},
+        {  value:"Agenda de eventos-Aplica DG", label:"Agenda de eventos-Aplica DG"},
         
       ],dataSelec:[
         {  value:"", label:""},
@@ -39,7 +42,7 @@ const propForms={
         {  value:"Eventos virtuales presenciales- leguas de señas y/o tácticas en vivo", label:"Eventos virtuales presenciales- leguas de señas y/o tácticas en vivo"},
       ],
        regionalesAr: [{Id: 1, Title: "AMAZONAS"},  {Id: 2, Title: "ANTIOQUIA"},  {Id: 3, Title: "ARAUCA"},  {Id: 4, Title: "ATLÁNTICO"},  {Id:35, Title: "BOGOTÁ D.C."},  {Id: 5, Title: "BOLÍVAR"},{Id: 6, Title: "BOYACÁ"},  {Id: 7, Title: "CALDAS"},  {Id:8, Title: "CAQUETÁ"},  {Id:9, Title: "CASANARE"},   {Id:10, Title: "CAUCA"},   {Id:11, Title: "CESAR"},   {Id:12, Title: "CHOCÓ"},
-       {Id:13, Title: "CÓRDOBA"},   {Id:14, Title: "CUNDINAMARCA"},   {Id:15, Title: "DIRECCIÓN GENERAL"},   {Id:16, Title: "DISTRITO CAPITAL"},   {Id:17, Title: "GUAINÍA"},   {Id:18, Title: "GUAJIRA"},   {Id:19, Title: "GUAVIARE"},   {Id:20, Title: "HUILA"},   {Id:21, Title: "MAGDALENA"},   {Id:22, Title: "META"},   {Id:23, Title: "NARIÑO"},   {Id:24, Title: "NORTE DE SANTANDER"},
+       {Id:13, Title: "CÓRDOBA"},   {Id:14, Title: "CUNDINAMARCA"},   {Id:15, Title: "DIRECCIÓN GENERAL"},   {Id:17, Title: "GUAINÍA"},   {Id:18, Title: "GUAJIRA"},   {Id:19, Title: "GUAVIARE"},   {Id:20, Title: "HUILA"},   {Id:21, Title: "MAGDALENA"},   {Id:22, Title: "META"},   {Id:23, Title: "NARIÑO"},   {Id:24, Title: "NORTE DE SANTANDER"},
        {Id:25, Title: "PUTUMAYO"},   {Id:26, Title: "QUINDÍO"},   {Id:27, Title: "RISARALDA"},   {Id:28, Title: "SAN ANDRÉS"},   {Id:29, Title: "SANTANDER"},   {Id:30, Title: "SUCRE"},   {Id:31, Title: "TOLIMA"},   {Id:32, Title: "VALLE"},   {Id:33, Title: "VAUPÉS"},   {Id:34, Title: "VICHADA"}  ]
       , 
       meses:[{id:0,mes:"Enero"},{id:1,mes:"Febrero"},{id:2,mes:"Marzo"},{id:3,mes:"Abril"},{id:4,mes:"Mayo"},{id:5,mes:"Junio"},{id:6,mes:"Julio"},{id:7,mes:"Agosto"},{id:8,mes:"Septiembre"},{id:9,mes:"Octubre"},{id:10,mes:"Noviembre"},{id:11,mes:"Diciembre"}],
