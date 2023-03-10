@@ -180,6 +180,85 @@ export function uploadFileImg(fileRecibido,consecu) {//solo recibe el archivo
       }
     });
   }
+  /***prub */
+
+  export const response=(payload)=>{
+    
+    
+    return fetch("http://localhost:8000/data")
+  .then((response) => response.json())
+  .then((data) => {
+    //console.log(data)
+      return data;
+  })
+  .catch(console.error);}
+
+  /*/***retrieve item */
+  function retrieveListItems() {
+
+    var clientContext = new SP.ClientContext(_spPageContextInfo.webAbsoluteUrl);
+    var oList = clientContext.get_web().get_lists().getByTitle('mes_edicion');
+        
+    var camlQuery = new SP.CamlQuery();
+   camlQuery.set_viewXml(
+	       "<View><Query><OrderBy><FieldRef Ascending='FALSE' Name='ID' /></OrderBy></Query><RowLimit>8</RowLimit></View>");
+
+    var collListItem = oList.getItems(camlQuery);
+        
+    clientContext.load(collListItem);
+        
+    clientContext.executeQueryAsync(function() {
+       onQuerySucceeded(collListItem);
+   },function(){
+   		onQueryFailed()
+   });  
+}
+
+function onQuerySucceeded(collListItem, args) {
+
+    var listItemInfo = '';
+
+    var listItemEnumerator = collListItem.getEnumerator();
+        
+    while (listItemEnumerator.moveNext()) {
+        var oListItem = listItemEnumerator.get_current();
+        listItemInfo += '\nID: ' + oListItem.get_id() + 
+            'Title: ' + oListItem.get_item('Title') + 
+            'Body: ' + oListItem.get_item('mes');
+    }
+
+    console.log(listItemInfo.toString());
+}
+
+function onQueryFailed(sender, args) {
+
+    alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
+}
+
+function getListItems2()
+{
+   var ctx =new  SP.ClientContext(_spPageContextInfo.webAbsoluteUrl);
+   var list = ctx.get_web().get_lists().getByTitle('mes_edicion');
+   console.log(_spPageContextInfo.webAbsoluteUrl)
+   var items = list.getItems(SP.CamlQuery.createAllItemsQuery());
+   ctx.load(items);
+   ctx.executeQueryAsync(function() {
+       printPageItemsDetails(items);
+   },function(){
+   		console.log("error");
+   });
+}
+
+function printPageItemsDetails(pageItems)
+{
+	
+    for(var i = 0; i < pageItems.get_count();i++) {
+        var pageItem = pageItems.getItemAtIndex(i);
+        console.log(pageItem.get_fieldValues()['Title']);
+        console.log(pageItem.get_fieldValues()['mes']);
+    }
+}
+
   
   /*------------------ --------------------------- ------------------------ ----------------*/
   export function createListItem(fileRecibido) {

@@ -6,7 +6,7 @@ const initialState = {
          "Alcance": "" ,
          "CierreMesualRedes_Red_social": "" ,
          "CierreMesualRedes_nuevos_seguido": "" ,
-         "Cierre_x0020_mensual_x0020_redes": "1" ,
+         "Cierre_x0020_mensual_x0020_redes": "" ,
          "Descripci_x00f3_n": "" ,
          "Enfoque_x0020_diferencial": "" ,
          "hash_link": "" ,

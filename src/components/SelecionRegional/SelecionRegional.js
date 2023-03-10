@@ -5,7 +5,7 @@ import propForms from '../FormPrinci/propiedadesForm';
 import { StoreContext } from '../../store/StoreProvider';
 import { types } from '../../store/StoreReducer';
 
-const SelecionRegional = ({handleClickCambiaPan}) => {
+const SelecionRegional = ({handleClickCambiaPan,selecMes}) => {
   const [store, dispatch] = useContext(StoreContext);
 const {Regional,Cierre_x0020_mensual_x0020_redes:mes} = store;
   const [seleccionado, setSeleccionado] = useState(true)
@@ -34,6 +34,10 @@ const {Regional,Cierre_x0020_mensual_x0020_redes:mes} = store;
     mesSelec.push(datehoy.getMonth());
     return meses.filter((val)=>  mesSelec.includes(val.id)) 
   }
+  const soloUnMes=()=>{
+    return meses.filter((val)=>  parseInt(val.id)===parseInt(store.Cierre_x0020_mensual_x0020_redes)) 
+  }
+
   const handleChange=(e)=>{
     setSeleccionado(false)
   //  console.log(e.target.value);
@@ -63,7 +67,7 @@ const {Regional,Cierre_x0020_mensual_x0020_redes:mes} = store;
       <p>Para continuar agregando evidencia debe seleccionar el mes</p>
       <select className="form-select" size="6" aria-label="size 6 select example" name={"Cierre_x0020_mensual_x0020_redes"} disabled={seleccionado} onChange={e => handleChangeMes(e)}>
         {
-            limitarMes().map((item,index)=><option value={item.id} key={item.id}>{item.mes}</option>)
+           !selecMes ? limitarMes().map((item,index)=><option value={item.id} key={item.id}>{item.mes}</option>): soloUnMes().map((item,index)=><option value={item.id} key={item.id}>{item.mes}</option>)
         }   
       </select>
       <p>Antes de continuar verifique que esta seleccionando su regional y el mes del reporte</p>
