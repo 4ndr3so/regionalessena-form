@@ -28,7 +28,7 @@ const PantallaIni = ({cambiaestado}) => {
   const {meses}=propForms;
 useEffect(() => {
 
-    if(Cierre_x0020_mensual_x0020_redes!==""){
+    if(Cierre_x0020_mensual_x0020_redes && Cierre_x0020_mensual_x0020_redes!==""){
       console.log(Cierre_x0020_mensual_x0020_redes)
       setHabilitada(true)
     }
@@ -58,7 +58,7 @@ useEffect(() => {
           Crear evidencia para el periodo de {habilitada && meses.filter((val)=>parseInt(val.id) === parseInt(Cierre_x0020_mensual_x0020_redes))[0].mes  }
         </button>
     </div>
-    <div className={styles.espacioDivide}></div>
+   { /*<><div className={styles.espacioDivide}></div>
     <div className={styles.stiloCampo +" py-3 my-4 border-top"}  >
     <span className='text-danger'> En desarrollo.....</span>
         <p>De clic en el siguiente para modificar una evidencia.  <br></br>
@@ -66,7 +66,8 @@ useEffect(() => {
         <button type="button" className="btn btn-warning" name="modificar" onClick={e => handleModificar(e)} disabled>
           Modificar evidencia
         </button>
-    </div>
+    </div></>*/
+    }
 
   </div>
 )};

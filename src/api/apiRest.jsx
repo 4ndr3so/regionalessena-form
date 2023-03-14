@@ -10,8 +10,8 @@ $(document).ready(function () {
   
     if (SP != null) {
       SP.SOD.executeFunc("SP.js", "SP.ClientContext", function () {
-       // console.log("Ejecuta cliente");
-        //console.log(SP.ClientContext);
+        console.log("Ejecuta cliente en jquery");
+        console.log(SP.ClientContext);
       });
     }
   
@@ -197,27 +197,44 @@ export function uploadFileImg(fileRecibido,consecu) {//solo recibe el archivo
 
   /*/***retrieve item */
   export function retrieveListItems() {
-    if(!SP){
-      return new Promise((resolve, reject) => {
-            reject("Problemas con el Sharepoint, intentelo más tardes"); // ¡Todo salió bien!
-      })
-    }
-    var clientContext = new SP.ClientContext(_spPageContextInfo.webAbsoluteUrl);
-    var oList = clientContext.get_web().get_lists().getByTitle('mes_edicion');
-        
-    var camlQuery = new SP.CamlQuery();
-   camlQuery.set_viewXml(
-	       "<View><Query><OrderBy><FieldRef Ascending='FALSE' Name='ID' /></OrderBy></Query><RowLimit>8</RowLimit></View>");
+    return new Promise((resolve,reject)=>{
+      if (SP != null) {
+        SP.SOD.executeFunc("SP.js", "SP.ClientContext", function () {
+          console.log("Ejecuta cliente");
+          console.log(SP.ClientContext);
+          var clientContext = new SP.ClientContext(
+            "https://sena4.sharepoint.com/sites/comunica/repositorio_comunicaciones"
+          );
+            
+    
+     
+          //var clientContext = new SP.ClientContext(_spPageContextInfo.webAbsoluteUrl);
+          var oList = clientContext.get_web().get_lists().getByTitle('mes_edicion');
+              
+          var camlQuery = new SP.CamlQuery();
+         camlQuery.set_viewXml(
+               "<View><Query><OrderBy><FieldRef Ascending='FALSE' Name='ID' /></OrderBy></Query><RowLimit>8</RowLimit></View>");
+      
+          var collListItem = oList.getItems(camlQuery);
+              
+          clientContext.load(collListItem);
+              
+           clientContext.executeQueryAsync(function() {
+            resolve(onQuerySucceeded(collListItem));
+         },function(){
+             reject(onQueryFailed())
+         });  
+        });
+      }else{
+        console.log("Problemas cliente");
+         reject("Problemas con el Sharepoint, intentelo más tardes"); // ¡Todo salió bien!
+       
+      }
 
-    var collListItem = oList.getItems(camlQuery);
+      
+  
+    })
         
-    clientContext.load(collListItem);
-        
-    clientContext.executeQueryAsync(function() {
-       onQuerySucceeded(collListItem);
-   },function(){
-   		onQueryFailed()
-   });  
 }
 
 function onQuerySucceeded(collListItem, args) {
@@ -234,7 +251,7 @@ function onQuerySucceeded(collListItem, args) {
             data.push({ID:oListItem.get_id(),Title:oListItem.get_item('Title'),mes:oListItem.get_item('mes')})
     }
 
-   // console.log(listItemInfo.toString());
+    console.log(listItemInfo.toString());
 
     return data;
 }

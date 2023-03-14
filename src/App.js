@@ -49,6 +49,7 @@ const handleTerminaSubida = (result,mensaje)=>{
   }else{
     updateVisual={cargaInicial:false,pantallaInicial:false,formulario:false,fetchDataForm:false,seleccionRegional:false,
       errorSubida:true,exitoSubida:false}
+      setMensaje("El elemento de lista no se pudo agregar ni actualizar porque se encontraron valores duplicados en los siguientes campos de la lista: [hash_link].")
       setVisuElemen(updateVisual)
   }
   console.log("empieza valida servidor")

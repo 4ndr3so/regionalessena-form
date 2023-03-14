@@ -127,6 +127,15 @@ const FormPrinci = ({ handleFetch,handleCancel }) => {
               type:types.change_data,
               payload:{name:"hash_link",value:hashLin}
               })
+        }else if(evt.target[i].name==="Fecha_x0020_de_x0020_la_x0020_ev"){
+          let fechaPrev=evt.target[i].value
+          let newDateAca=fechaPrev.split("-")
+          console.log(evt.target[i].value)
+          var dateObj = new Date(newDateAca[1]+"/"+newDateAca[2]+"/"+newDateAca[0]);
+          dispatch({
+            type:types.change_data,
+            payload:{name:evt.target[i].name,value:dateObj}
+            })
         }  else{
           dispatch({
             type:types.change_data,

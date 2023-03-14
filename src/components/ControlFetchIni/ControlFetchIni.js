@@ -28,7 +28,7 @@ const ControlFetchIni = ({subida}) => {
       // response().then( //para pruebas
       retrieveListItems().then(
         (args) => {
-            console.log(args)
+            //console.log(args)
             console.debug("¡Sí! ");
             //console.log(args[1].mes)
             let newArr=[...iniciEs]
