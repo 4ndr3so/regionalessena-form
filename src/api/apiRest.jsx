@@ -191,11 +191,17 @@ export function uploadFileImg(fileRecibido,consecu) {//solo recibe el archivo
     //console.log(data)
       return data;
   })
-  .catch(console.error);}
+  .catch((response)=>{
+    return Promise.reject(response.json());
+  });}
 
   /*/***retrieve item */
-  function retrieveListItems() {
-
+  export function retrieveListItems() {
+    if(!SP){
+      return new Promise((resolve, reject) => {
+            reject("Problemas con el Sharepoint, intentelo más tardes"); // ¡Todo salió bien!
+      })
+    }
     var clientContext = new SP.ClientContext(_spPageContextInfo.webAbsoluteUrl);
     var oList = clientContext.get_web().get_lists().getByTitle('mes_edicion');
         
@@ -217,7 +223,7 @@ export function uploadFileImg(fileRecibido,consecu) {//solo recibe el archivo
 function onQuerySucceeded(collListItem, args) {
 
     var listItemInfo = '';
-
+    let data=[];
     var listItemEnumerator = collListItem.getEnumerator();
         
     while (listItemEnumerator.moveNext()) {
@@ -225,14 +231,19 @@ function onQuerySucceeded(collListItem, args) {
         listItemInfo += '\nID: ' + oListItem.get_id() + 
             'Title: ' + oListItem.get_item('Title') + 
             'Body: ' + oListItem.get_item('mes');
+            data.push({ID:oListItem.get_id(),Title:oListItem.get_item('Title'),mes:oListItem.get_item('mes')})
     }
 
-    console.log(listItemInfo.toString());
+   // console.log(listItemInfo.toString());
+
+    return data;
 }
 
 function onQueryFailed(sender, args) {
 
-    alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
+   // alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
+
+    return 'Request failed. ' + args.get_message() + '\n' + args.get_stackTrace();
 }
 
 function getListItems2()

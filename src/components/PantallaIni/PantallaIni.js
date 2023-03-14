@@ -29,6 +29,7 @@ const PantallaIni = ({cambiaestado}) => {
 useEffect(() => {
 
     if(Cierre_x0020_mensual_x0020_redes!==""){
+      console.log(Cierre_x0020_mensual_x0020_redes)
       setHabilitada(true)
     }
 
@@ -54,7 +55,7 @@ useEffect(() => {
         <p>Si por alguna razón se decide volver a abrir algún espacio general para el recargue de evidencias se habilitará está opción</p>
         <p>{ !habilitada? "La carga de evidencia de meses anteriores no está habilitada":"La carga de evidencia de meses anteriores está habilitada"}</p>
         <button type="button" className="btn btn-warning" onClick={e => handleModificar(e)} name="anteriores" disabled={!habilitada }>
-          Crear evidencia para el periodo de {meses.filter((val)=>parseInt(val.id) === parseInt(Cierre_x0020_mensual_x0020_redes))[0].mes  }
+          Crear evidencia para el periodo de {habilitada && meses.filter((val)=>parseInt(val.id) === parseInt(Cierre_x0020_mensual_x0020_redes))[0].mes  }
         </button>
     </div>
     <div className={styles.espacioDivide}></div>

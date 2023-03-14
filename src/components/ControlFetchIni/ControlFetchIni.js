@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './ControlFetchIni.module.scss';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { response } from '../../api/apiRest';
+import { response,retrieveListItems } from '../../api/apiRest';
 import propForms from '../FormPrinci/propiedadesForm';
 import { StoreContext } from '../../store/StoreProvider';
 import { types } from '../../store/StoreReducer';
@@ -24,9 +24,11 @@ const ControlFetchIni = ({subida}) => {
     let mounted = true;
 
     async function fetchMyAPI() {   
-
-     response().then(
+      
+      // response().then( //para pruebas
+      retrieveListItems().then(
         (args) => {
+            console.log(args)
             console.debug("¡Sí! ");
             //console.log(args[1].mes)
             let newArr=[...iniciEs]
@@ -49,7 +51,7 @@ const ControlFetchIni = ({subida}) => {
           console.debug("¡NO! ");
           console.debug(fail);
           console.debug(mensaje);
-              subida(true,"Problemas al cargar la App");
+            subida(false,"Problemas al cargar la App");
         }
       );
     }

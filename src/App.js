@@ -18,7 +18,7 @@ errorSubida:false,exitoSubida:false})
 const [muestraCarga, setMuestraCarga] = useState(false)
 const [fetchData, setFetchData] = useState(false)
 const [resultOpera, setResultOpera] = useState(false)
-const [mensaje, setMensaje] = useState("")
+const [mensaje, setMensaje] = useState("Problemas con el Sharepoint, intentelo más tardes")
 const [cargaInicial, setCargaInicial] = useState(true)
 const [modifica, setModifica] = useState(false)
 
@@ -53,12 +53,17 @@ const handleTerminaSubida = (result,mensaje)=>{
   }
   console.log("empieza valida servidor")
 }
-const handleTerminaCargaInicial=()=>{
+const handleTerminaCargaInicial=(result)=>{
   let updateVisual={cargaInicial:false,pantallaInicial:true}
   setVisuElemen(visuElemen=>({
     ...visuElemen,
     ...updateVisual
   }))
+  if(!result){
+    setMensaje("Problemas al intentar cargar datos iniciales")
+    updateVisual={cargaInicial:false,pantallaInicial:true,formulario:false,fetchDataForm:false,seleccionRegional:false,
+      errorSubida:true,exitoSubida:false}
+ }
 
 }
 const handleCancel=()=>{
@@ -111,7 +116,7 @@ const handleCambiaEstadoIni=(target)=>{
           { visuElemen.exitoSubida &&  <ExitoSubida></ExitoSubida>}
           { visuElemen.errorSubida &&  <ErrorSubida mensajeError={mensaje} regresar={regresar}></ErrorSubida>}
       </StoreProvider>
-      <img src={logo} className="App-logo" alt="logo" />
+      
     </div>
   );
 }
