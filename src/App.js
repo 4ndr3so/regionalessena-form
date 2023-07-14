@@ -62,7 +62,8 @@ const handleTerminaCargaInicial=(result)=>{
   }))
   if(!result){
     setMensaje("Problemas al intentar cargar datos iniciales")
-    updateVisual={cargaInicial:false,pantallaInicial:true,formulario:false,fetchDataForm:false,seleccionRegional:false,
+    //para pruebas poner pantalla inicial true
+    updateVisual={cargaInicial:false,pantallaInicial:false,formulario:false,fetchDataForm:false,seleccionRegional:false,
       errorSubida:true,exitoSubida:false}
  }
 

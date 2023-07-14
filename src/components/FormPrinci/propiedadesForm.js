@@ -25,7 +25,8 @@ const propForms={
         {  value:"Contenido periodístico para la revista y/o periódico SENA COMUNICA impreso y/o Digital", label:"Contenido periodístico para la revista y/o periódico SENA COMUNICA impreso y/o Digital"},
         {  value:"SENA Comunica Multiplataforma", label:"SENA Comunica Multiplataforma"},
         {  value:"Tácticas en vivo por redes sociales", label:"Tácticas en vivo por redes sociales"},
-        {  value:"Alcance digital en redes sociales", label:"Alcance digital en redes sociales"}
+        {  value:"Alcance digital en redes sociales", label:"Alcance digital en redes sociales"},
+        
       ],
        tipoAudiovisual:[
         {  value:"", label:""},

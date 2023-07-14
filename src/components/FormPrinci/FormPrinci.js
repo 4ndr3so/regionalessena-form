@@ -29,7 +29,7 @@ const FormPrinci = ({ handleFetch,handleCancel }) => {
   const [validaText, setValidaText] = useState(true)
   const [checkdiferen, setCheckdiferen] = useState(false);
   const [alcance, setAlcance] = useState("");
- 
+  const dataImpactos = [].concat(dataSelec).concat({  value:"Impactos Noticias SENA", label:"Impactos Noticias SENA"}) 
 
   const handleChekRedes = (e, v2) => {
    /* dispatch({
@@ -233,6 +233,7 @@ const FormPrinci = ({ handleFetch,handleCancel }) => {
         <ContLabel nombre={"Tipo de producto"} nombrefor="selectEvi" margin={4} obligatorio={true}>
           <select id="selectEvi" className="form-select"  name="Tipo_x0020_Evidencia"  onChange={e => handleChange(e)} required disabled={alcance===""? true:false}>
             { alcance && alcance==="Comunicación Externa"?
+              Regional==="15" ? dataImpactos.map((item, index) => <option key={item.value} value={item.value}>{item.label}</option>):
               dataSelec.map((item, index) => <option key={item.value} value={item.value}>{item.label}</option>):
               dataSelec2.map((item, index) => <option key={item.value} value={item.value}>{item.label}</option>)
             }

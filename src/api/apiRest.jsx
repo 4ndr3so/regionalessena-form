@@ -181,7 +181,7 @@ export function uploadFileImg(fileRecibido,consecu) {//solo recibe el archivo
     });
   }
   /***prub */
-
+///D:\xampp\htdocs\react\regionalessena-form\src\api>json-server --port 8000 --watch examplePrub.json
   export const response=(payload)=>{
     
     
